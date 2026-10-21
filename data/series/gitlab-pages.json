@@ -1,1 +1,1 @@
-{"slug":"gitlab-pages","generatedAt":"2026-10-21T20:52:26.609Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[445],"regions":{"us-east":[179],"us-west":[347],"canada":[298],"western-europe":[434],"uk":[433],"india":[838],"singapore":[841],"australia":[704]},"availability":[100]}
+{"slug":"gitlab-pages","generatedAt":"2026-10-21T21:52:30.447Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[464],"regions":{"us-east":[191],"us-west":[347],"canada":[304],"western-europe":[436],"uk":[433],"india":[838],"singapore":[841],"australia":[704]},"availability":[100]}

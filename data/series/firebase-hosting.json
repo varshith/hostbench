@@ -1,1 +1,1 @@
-{"slug":"firebase-hosting","generatedAt":"2026-10-21T20:52:26.609Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[71],"regions":{"us-east":[35],"us-west":[99],"canada":[76],"western-europe":[74],"uk":[75],"india":[19],"singapore":[17],"australia":[135]},"availability":[100]}
+{"slug":"firebase-hosting","generatedAt":"2026-10-21T21:52:30.447Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[71],"regions":{"us-east":[35],"us-west":[203],"canada":[109],"western-europe":[90],"uk":[75],"india":[19],"singapore":[19],"australia":[135]},"availability":[100]}

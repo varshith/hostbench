@@ -1,1 +1,1 @@
-{"slug":"wasmer-edge","generatedAt":"2026-10-21T20:52:26.609Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[116],"regions":{"us-east":[75],"us-west":[36],"canada":[57],"western-europe":[80],"uk":[176],"india":[258],"singapore":[31],"australia":[513]},"availability":[100]}
+{"slug":"wasmer-edge","generatedAt":"2026-10-21T21:52:30.447Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[142],"regions":{"us-east":[142],"us-west":[41],"canada":[184],"western-europe":[116],"uk":[176],"india":[262],"singapore":[35],"australia":[534]},"availability":[100]}

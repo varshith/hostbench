@@ -1,1 +1,1 @@
-{"slug":"vercel","generatedAt":"2026-10-21T20:52:26.609Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[53],"regions":{"us-east":[32],"us-west":[166],"canada":[70],"western-europe":[58],"uk":[44],"india":[34],"singapore":[32],"australia":[255]},"availability":[100]}
+{"slug":"vercel","generatedAt":"2026-10-21T21:52:30.447Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[53],"regions":{"us-east":[38],"us-west":[166],"canada":[70],"western-europe":[58],"uk":[44],"india":[34],"singapore":[33],"australia":[255]},"availability":[100]}

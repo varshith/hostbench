@@ -1,1 +1,1 @@
-{"slug":"deno-deploy","generatedAt":"2026-10-21T16:46:39.576Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[432],"regions":{"us-east":[206],"us-west":[91],"canada":[304],"western-europe":[394],"uk":[1132],"india":[637],"singapore":[700],"australia":[330]},"availability":[100]}
+{"slug":"deno-deploy","generatedAt":"2026-10-21T16:51:14.283Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[636],"regions":{"us-east":[348],"us-west":[91],"canada":[636],"western-europe":[394],"uk":[1191],"india":[1717],"singapore":[1338],"australia":[753]},"availability":[100]}

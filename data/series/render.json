@@ -1,1 +1,1 @@
-{"slug":"render","generatedAt":"2026-10-21T16:46:39.576Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[290],"regions":{"us-east":[187],"us-west":[135],"canada":[196],"western-europe":[290],"uk":[286],"india":[274],"singapore":[384],"australia":[191]},"availability":[100]}
+{"slug":"render","generatedAt":"2026-10-21T16:51:14.283Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[284],"regions":{"us-east":[201],"us-west":[158],"canada":[204],"western-europe":[290],"uk":[286],"india":[331],"singapore":[384],"australia":[265]},"availability":[100]}

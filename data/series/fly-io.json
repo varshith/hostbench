@@ -1,1 +1,1 @@
-{"slug":"fly-io","generatedAt":"2026-10-21T16:46:39.576Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[57],"regions":{"us-east":[35],"us-west":[48],"canada":[57],"western-europe":[52],"uk":[68],"india":[556],"singapore":[22],"australia":[29]},"availability":[100]}
+{"slug":"fly-io","generatedAt":"2026-10-21T16:51:14.283Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[52],"regions":{"us-east":[35],"us-west":[48],"canada":[57],"western-europe":[108],"uk":[68],"india":[574],"singapore":[22],"australia":[30]},"availability":[100]}

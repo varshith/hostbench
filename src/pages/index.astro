@@ -2,11 +2,11 @@
 import Base from '../layouts/Base.astro';
 import KindBadge from '../components/KindBadge.astro';
 import Sparkline from '../components/Sparkline.astro';
-import { latest, leaderboard, series, fmtMs, fmtPct, fmtDate, hasData } from '../lib/data';
+import { latest, leaderboard, series, fmtMs, fmtPct, fmtDate, hasData, isDown, NO_SUCCESS } from '../lib/data';
 import { SITE_NAME, SITE_TAGLINE, REPO_URL, withBase } from '../lib/site';
 
 const rows = leaderboard();
-const siteUrl = Astro.site?.toString() ?? '';
+const siteUrl = new URL(withBase('/'), Astro.site).toString();
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
@@ -59,8 +59,8 @@ const jsonLd = {
             <th scope="row" data-value={t.name}><a href={withBase(`/hosts/${t.slug}/`)}>{t.name}</a></th>
             <td data-value={t.platformType}><span class="badge badge-type">{t.platformType}</span></td>
             <td data-value={t.measurementKind}><KindBadge kind={t.measurementKind} /></td>
-            <td class={`num${hasData(g7) ? '' : ' collecting'}`} data-value={g7?.ttfb.p50 ?? ''}>{hasData(g7) ? fmtMs(g7.ttfb.p50) : 'collecting'}</td>
-            <td class={`num${hasData(g7) ? '' : ' collecting'}`} data-value={g7?.ttfb.p95 ?? ''}>{hasData(g7) ? fmtMs(g7.ttfb.p95) : 'collecting'}</td>
+            <td class={`num${hasData(g7) ? '' : ' collecting'}`} data-value={g7?.ttfb.p50 ?? ''}>{hasData(g7) ? fmtMs(g7.ttfb.p50) : isDown(g7) ? NO_SUCCESS : 'collecting'}</td>
+            <td class={`num${hasData(g7) ? '' : ' collecting'}`} data-value={g7?.ttfb.p95 ?? ''}>{hasData(g7) ? fmtMs(g7.ttfb.p95) : isDown(g7) ? NO_SUCCESS : 'collecting'}</td>
             <td class={`num${g30?.availability != null ? '' : ' collecting'}`} data-value={g30?.availability ?? ''}>{g30?.availability != null ? fmtPct(g30.availability) : 'collecting'}</td>
             <td data-value={t.httpVersion ?? ''}>{t.httpVersion ?? <span class="collecting">collecting</span>}</td>
             <td data-value={t.http3}>{t.http3}</td>
@@ -71,14 +71,14 @@ const jsonLd = {
     </tbody>
   </table>
   </div>
-  <p class="meta">Sorted by 7-day global TTFB p50. Click a column header to re-sort. Hosts marked "collecting" have no successful samples in the window yet.</p>
+  <p class="meta">Sorted by 7-day global TTFB p50. Click a column header to re-sort. Hosts marked "collecting" have no samples in the window yet; "no successful samples" means every request in the window failed.</p>
 
   <script>
     // Client-side sort only; the server-rendered order is already by TTFB p50.
     const table = document.getElementById('leaderboard') as HTMLTableElement | null;
     if (table) {
       const headers = Array.from(table.querySelectorAll<HTMLTableCellElement>('th[data-sort]'));
-      headers.forEach((th, i) => {
+      headers.forEach((th) => {
         th.addEventListener('click', () => {
           const type = th.dataset.sort;
           const dir = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';

@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import KindBadge from '../../components/KindBadge.astro';
-import { monthlyReports, monthLabel, fmtMs, fmtPct, fmtDate, regionLabel, latest } from '../../lib/data';
+import { monthlyReports, monthLabel, fmtMs, fmtPct, fmtDate, regionLabel, latest, isDownSummary, NO_SUCCESS } from '../../lib/data';
 import { REPO_URL, withBase } from '../../lib/site';
 import type { MonthlyReport } from '../../../scripts/lib/types.ts';
 
@@ -12,6 +12,7 @@ const { report: r } = Astro.props as { report: MonthlyReport };
 const label = monthLabel(r.month);
 const fastest = r.ranking.find((x) => x.ttfbP50 != null);
 const fastestP95 = [...r.ranking].filter((x) => x.ttfbP95 != null).sort((a, b) => a.ttfbP95! - b.ttfbP95!)[0];
+const rowMs = (v: number | null, row: { availability: number | null; n: number }) => (v == null && isDownSummary(row) ? NO_SUCCESS : fmtMs(v));
 const availLeader = [...r.ranking].filter((x) => x.availability != null).sort((a, b) => b.availability! - a.availability! || b.n - a.n)[0];
 ---
 <Base title={`State of Edge Hosting: ${label}`} description={`${label} hosting benchmark report: ${r.sampleCount} samples across ${r.hostCount} platforms and ${latest.regions.length} regions; fastest hosts by TTFB, availability leaders and biggest movers.`} path={`/report/${r.month}/`}>
@@ -38,9 +39,9 @@ const availLeader = [...r.ranking].filter((x) => x.availability != null).sort((a
           <td class="num">{i + 1}</td>
           <td><a href={withBase(`/hosts/${x.slug}/`)}>{x.name}</a></td>
           <td><KindBadge kind={x.measurementKind} /></td>
-          <td class="num">{fmtMs(x.ttfbP50)}</td>
-          <td class="num">{fmtMs(x.ttfbP95)}</td>
-          <td class="num">{fmtMs(x.totalP50)}</td>
+          <td class="num">{rowMs(x.ttfbP50, x)}</td>
+          <td class="num">{rowMs(x.ttfbP95, x)}</td>
+          <td class="num">{rowMs(x.totalP50, x)}</td>
           <td class="num">{fmtPct(x.availability)}</td>
           <td class="num">{x.n}</td>
           <td class="num">{x.deltaTtfbP50 == null ? '–' : `${x.deltaTtfbP50 > 0 ? '+' : ''}${Math.round(x.deltaTtfbP50)} ms`}</td>
@@ -58,7 +59,7 @@ const availLeader = [...r.ranking].filter((x) => x.availability != null).sort((a
       <summary>{regionLabel(region)}: {rows.length} hosts</summary>
       <div class="table-wrap"><table>
         <thead><tr><th>Host</th><th class="num">TTFB p50</th><th class="num">TTFB p95</th><th class="num">Availability</th><th class="num">Samples</th></tr></thead>
-        <tbody>{rows.map((x) => <tr><td>{x.name}</td><td class="num">{fmtMs(x.ttfbP50)}</td><td class="num">{fmtMs(x.ttfbP95)}</td><td class="num">{fmtPct(x.availability)}</td><td class="num">{x.n}</td></tr>)}</tbody>
+        <tbody>{rows.map((x) => <tr><td>{x.name}</td><td class="num">{rowMs(x.ttfbP50, x)}</td><td class="num">{rowMs(x.ttfbP95, x)}</td><td class="num">{fmtPct(x.availability)}</td><td class="num">{x.n}</td></tr>)}</tbody>
       </table></div>
     </details>
   ))}

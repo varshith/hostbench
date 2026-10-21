@@ -1,8 +1,8 @@
 ---
 import type { WindowStats } from '../../scripts/lib/types.ts';
-import { fmtMs, fmtPct, hasData, regionLabel } from '../lib/data';
+import { NO_SUCCESS, fmtMs, fmtPct, hasData, isDown, regionLabel } from '../lib/data';
 interface Props {
-  rows: { id: string; label?: string; stats: Record<string, WindowStats> }[];
+  rows: { id: string; label?: string; stats: Record<string, WindowStats>; window?: string }[];
   window: string;
   caption: string;
 }
@@ -24,10 +24,17 @@ const { rows, window, caption } = Astro.props;
     </tr>
   </thead>
   <tbody>
-    {rows.map(({ id, label, stats }) => {
-      const s = stats[window] as WindowStats | undefined;
+    {rows.map(({ id, label, stats, window: rowWindow }) => {
+      const s = stats[rowWindow ?? window] as WindowStats | undefined;
       const sampled = s ? s.n : 0;
-      return hasData(s) ? (
+      return isDown(s) ? (
+        <tr>
+          <th scope="row">{label ?? regionLabel(id)}</th>
+          <td class="collecting" colspan="5">{NO_SUCCESS}</td>
+          <td class="num">{fmtPct(s.availability ?? 0)}</td>
+          <td class="num">{s.n}</td>
+        </tr>
+      ) : hasData(s) ? (
         <tr>
           <th scope="row">{label ?? regionLabel(id)}</th>
           <td class="num">{fmtMs(s.ttfb.p50)}</td>

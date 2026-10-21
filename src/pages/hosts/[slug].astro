@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import KindBadge from '../../components/KindBadge.astro';
 import Sparkline from '../../components/Sparkline.astro';
 import StatsTable from '../../components/StatsTable.astro';
-import { latest, series, fmtMs, fmtPct, fmtDate, hasData, regionLabel } from '../../lib/data';
+import { latest, series, fmtMs, fmtPct, fmtDate, hasData, isDown } from '../../lib/data';
 import { withBase } from '../../lib/site';
 
 export function getStaticPaths() {
@@ -14,7 +14,9 @@ const s = series[t.slug];
 const g7 = t.global['7d'];
 const regionRows = latest.regions.map((r) => ({ id: r.id, label: r.label, stats: t.regions[r.id] ?? {} }));
 const windows = latest.windows;
-const description = hasData(g7)
+const description = isDown(g7)
+  ? `${t.name} benchmark: no successful responses in the last 7 days (${fmtPct(g7.availability ?? 0)} availability over ${g7.down} failed samples), measured hourly from ${latest.regions.length} regions.`
+  : hasData(g7)
   ? `${t.name} benchmark: ${fmtMs(g7.ttfb.p50)} median TTFB and ${fmtPct(t.global['30d']?.availability)} availability, measured hourly from ${latest.regions.length} regions.`
   : `${t.name} benchmark: hourly TTFB, TLS and availability measurements from ${latest.regions.length} regions. Data is being collected.`;
 const compareLinks = latest.targets.filter((o) => o.slug !== t.slug).slice(0, 6);
@@ -22,7 +24,9 @@ const compareLinks = latest.targets.filter((o) => o.slug !== t.slug).slice(0, 6)
 <Base title={`${t.name} performance benchmark`} description={description} path={`/hosts/${t.slug}/`}>
   <h1>{t.name} <KindBadge kind={t.measurementKind} /> <span class="badge badge-type">{t.platformType}</span></h1>
   <p class="lede">
-    {hasData(g7)
+    {isDown(g7)
+      ? <>{t.name} returned no successful responses in the last 7 days: all {g7.down} counted samples failed, so availability is <strong>{fmtPct(g7.availability ?? 0)}</strong> and there are no latency figures. Last sample {fmtDate(t.lastSeen)}.</>
+      : hasData(g7)
       ? <>Global median TTFB over the last 7 days is <strong>{fmtMs(g7.ttfb.p50)}</strong> (p95 {fmtMs(g7.ttfb.p95)}); 30-day availability is <strong>{fmtPct(t.global['30d']?.availability)}</strong>. Last sample {fmtDate(t.lastSeen)}.</>
       : <>Measurements for {t.name} are being collected. Numbers appear after the first successful hourly run.</>}
   </p>
@@ -54,7 +58,7 @@ const compareLinks = latest.targets.filter((o) => o.slug !== t.slug).slice(0, 6)
   )}
 
   <h2>Global summary</h2>
-  <StatsTable rows={windows.map((w) => ({ id: w, label: `Last ${w}`, stats: Object.fromEntries(windows.map((x) => [x, t.global[x]])) }))} window="24h" caption="Rows are time windows; p50/p95 over successful samples from all regions." />
+  <StatsTable rows={windows.map((w) => ({ id: w, label: `Last ${w}`, window: w, stats: Object.fromEntries(windows.map((x) => [x, t.global[x]])) }))} window="24h" caption="Rows are time windows; p50/p95 over successful samples from all regions." />
   <p class="meta">The row label is the window; the table above reuses the regional layout, so each row shows that window's global figures.</p>
 
   <h2>By region</h2>

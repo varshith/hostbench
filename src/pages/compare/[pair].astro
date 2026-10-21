@@ -1,9 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import KindBadge from '../../components/KindBadge.astro';
-import { latest, fmtMs, fmtPct, hasData } from '../../lib/data';
+import { latest, fmtMs, fmtPct, hasData, isDown, NO_SUCCESS } from '../../lib/data';
 import { withBase } from '../../lib/site';
-import type { TargetRollup } from '../../../scripts/lib/types.ts';
+import type { TargetRollup, WindowStats } from '../../../scripts/lib/types.ts';
 
 export function getStaticPaths() {
   // Every pair, slugs sorted, so the compare picker can build any URL.
@@ -21,6 +21,8 @@ function winner(x: number | null | undefined, y: number | null | undefined, lowe
   if (x == null || y == null || x === y) return null;
   return (lowerIsBetter ? x < y : x > y) ? 'a' : 'b';
 }
+const p50Empty = (st: WindowStats | undefined) => (isDown(st) ? NO_SUCCESS : 'collecting');
+const decided = (x: WindowStats | undefined, y: WindowStats | undefined) => (hasData(x) || isDown(x)) && (hasData(y) || isDown(y));
 const ga = a.global[W], gb = b.global[W];
 const globalWin = winner(hasData(ga) ? ga.ttfb.p50 : null, hasData(gb) ? gb.ttfb.p50 : null);
 const regionWins = latest.regions.map((r) => {
@@ -36,10 +38,10 @@ const description = `${a.name} vs ${b.name}: TTFB and availability by region ove
 <Base title={`${a.name} vs ${b.name}`} description={description} path={`/compare/${a.slug}-vs-${b.slug}/`}>
   <h1>{a.name} vs {b.name}</h1>
   <p class="lede">
-    Side-by-side 7-day figures from {latest.regions.length} regions.
+    Side-by-side 7-day figures from {latest.regions.length} regions.{' '}
     {globalWin
       ? <>Lower global median TTFB: <strong>{globalWin === 'a' ? a.name : b.name}</strong> ({fmtMs((globalWin === 'a' ? ga : gb)!.ttfb.p50)} vs {fmtMs((globalWin === 'a' ? gb : ga)!.ttfb.p50)}). Regions won: {a.name} {tallyA}, {b.name} {tallyB}.</>
-      : <>Not enough data yet to call a winner.</>}
+      : <>No global winner yet: the medians tie, or at least one host has no successful samples in the window.</>}
   </p>
   {mixedKinds && <p class="notice">One of these is a <KindBadge kind="controlled" /> measurement and the other a <KindBadge kind="reference" /> measurement, so the pages requested are not identical. Treat this comparison as indicative.</p>}
 
@@ -60,24 +62,24 @@ const description = `${a.name} vs ${b.name}: TTFB and availability by region ove
     <tbody>
       <tr>
         <th scope="row">Global</th>
-        <td class={`num${globalWin === 'a' ? ' winner' : ''}`}>{hasData(ga) ? fmtMs(ga.ttfb.p50) : <span class="collecting">collecting</span>}</td>
-        <td class={`num${globalWin === 'b' ? ' winner' : ''}`}>{hasData(gb) ? fmtMs(gb.ttfb.p50) : <span class="collecting">collecting</span>}</td>
+        <td class={`num${globalWin === 'a' ? ' winner' : ''}`}>{hasData(ga) ? fmtMs(ga.ttfb.p50) : <span class="collecting">{p50Empty(ga)}</span>}</td>
+        <td class={`num${globalWin === 'b' ? ' winner' : ''}`}>{hasData(gb) ? fmtMs(gb.ttfb.p50) : <span class="collecting">{p50Empty(gb)}</span>}</td>
         <td class="num">{hasData(ga) ? fmtMs(ga.ttfb.p95) : '–'}</td>
         <td class="num">{hasData(gb) ? fmtMs(gb.ttfb.p95) : '–'}</td>
         <td class="num">{ga?.availability != null ? fmtPct(ga.availability) : '–'}</td>
         <td class="num">{gb?.availability != null ? fmtPct(gb.availability) : '–'}</td>
-        <td>{globalWin ? (globalWin === 'a' ? a.name : b.name) : <span class="collecting">collecting</span>}</td>
+        <td>{globalWin ? (globalWin === 'a' ? a.name : b.name) : decided(ga, gb) ? '–' : <span class="collecting">collecting</span>}</td>
       </tr>
       {regionWins.map(({ r, sa, sb, win }) => (
         <tr>
           <th scope="row">{r.label}</th>
-          <td class={`num${win === 'a' ? ' winner' : ''}`}>{hasData(sa) ? fmtMs(sa.ttfb.p50) : <span class="collecting">collecting</span>}</td>
-          <td class={`num${win === 'b' ? ' winner' : ''}`}>{hasData(sb) ? fmtMs(sb.ttfb.p50) : <span class="collecting">collecting</span>}</td>
+          <td class={`num${win === 'a' ? ' winner' : ''}`}>{hasData(sa) ? fmtMs(sa.ttfb.p50) : <span class="collecting">{p50Empty(sa)}</span>}</td>
+          <td class={`num${win === 'b' ? ' winner' : ''}`}>{hasData(sb) ? fmtMs(sb.ttfb.p50) : <span class="collecting">{p50Empty(sb)}</span>}</td>
           <td class="num">{hasData(sa) ? fmtMs(sa.ttfb.p95) : '–'}</td>
           <td class="num">{hasData(sb) ? fmtMs(sb.ttfb.p95) : '–'}</td>
           <td class="num">{sa?.availability != null ? fmtPct(sa.availability) : '–'}</td>
           <td class="num">{sb?.availability != null ? fmtPct(sb.availability) : '–'}</td>
-          <td>{win ? (win === 'a' ? a.name : b.name) : <span class="collecting">collecting</span>}</td>
+          <td>{win ? (win === 'a' ? a.name : b.name) : decided(sa, sb) ? '–' : <span class="collecting">collecting</span>}</td>
         </tr>
       ))}
     </tbody>

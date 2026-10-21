@@ -23,6 +23,18 @@ export function hasData(stats: WindowStats | undefined): stats is WindowStats {
   return Boolean(stats && stats.up > 0);
 }
 
+/** Every counted sample failed. The narrower predicate keeps WindowStats in the false branch, so test it before hasData. */
+export function isDown(stats: WindowStats | undefined): stats is WindowStats & { up: 0 } {
+  return Boolean(stats && stats.up === 0 && stats.down > 0);
+}
+
+export const NO_SUCCESS = 'no successful samples';
+
+/** Monthly report rows carry no up/down counts, so 0% availability over n > 0 samples is the down signal. */
+export function isDownSummary(row: { availability: number | null; n: number }): boolean {
+  return row.availability === 0 && row.n > 0;
+}
+
 export function fmtMs(v: number | null | undefined): string {
   return v == null ? 'collecting' : `${Math.round(v)} ms`;
 }

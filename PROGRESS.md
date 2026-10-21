@@ -10,18 +10,36 @@
 - All commits pushed; last data run 2026-10-21T19:31Z (6 runs total).
 
 ## In flight / not working yet
-- Scheduled cron has never fired (all 4 runs were manual dispatches). Workflow is active, Actions enabled, file on main. Repo is <4 h old; GitHub can take hours to start schedules on new repos. A background wait was watching the 20:23 UTC slot when this file was written; check `gh run list --workflow=measure.yml` for an `event=schedule` row. If none by 2026-10-22 morning, that is a Don task (consider a second repo-level trigger or a scheduled dispatch from elsewhere).
+- Scheduled cron has never fired: 5 slots missed (17:00, 18:00, 19:23, 20:23 UTC) across two minutes; all runs
+  were manual dispatches. Mike (research) found nothing misconfigured: workflow active, Actions enabled, account
+  from 2011, 0 runs with event=schedule. Likely cause: the repo was created at 16:48 UTC inside a GitHub Actions
+  incident (14:52-19:22 UTC) so the schedule never registered. GitHub staff say a push to main resyncs it
+  (community discussion #185355), so the cron minute was changed to `17 * * * *` and pushed at ~21:00 UTC.
+  A background loop in the last session dispatched a manual run whenever the last run was 55+ min old, until
+  06:00 UTC 2026-10-22, so the data series should be continuous overnight regardless.
+  CHECK FIRST: `gh api 'repos/varshith/hostbench/actions/runs?event=schedule' --jq .total_count`.
+  If still 0, the human sets up an external trigger (step 2 in Next steps).
 - Reference-page fragility: heroku (2025 sample app), azure-static-web-apps (2023 content) and northflank (dashboard shell) are the least stable picks; swap rather than record downtime if one goes 404.
 - Budget headroom is 58 tests/h; runner IPs may be shared. Watch `stoppedEarly` in data/runs.jsonl.
 
 ## Next steps (ordered)
-1. Confirm a scheduled run exists; if not, debug the cron (Don, /debug).
-2. Human: join affiliate programs (DigitalOcean, Railway, Google Cloud via CJ, Cloudways, Kinsta, Hostinger, UptimeRobot, Better Stack) and fill `affiliateUrl` in config/targets.json; add an uptime-tool affiliate block near availability data.
-3. Human: publish a sponsor contact address; src/pages/advertise.astro currently says "open a GitHub issue".
-4. Human: pick a HostBench domain; set it on the hostbench repo (not the user site) and update SITE_URL/BASE_PATH in deploy.yml.
-5. Human: create accounts/tokens per test-page/deploy/README.md to promote hosts from reference to controlled; optionally a GLOBALPING_TOKEN secret (500 tests/h).
-6. After 4+ weeks of data: first monthly report + Show HN (April drafts the post).
-7. Low-priority pipeline items (pre-existing): in-progress measurement at poll deadline counts as measured with 0 probes; `HOSTBENCH_ONLY=""` selects 0 targets.
+1. Confirm schedule runs exist (command above). If yes, delete step 2.
+2. Human, if cron still dead: create a fine-grained PAT (owner varshith, repo access: only hostbench, permission
+   Actions: Read and write), then a free cron-job.org job: POST
+   https://api.github.com/repos/varshith/hostbench/actions/workflows/391950001/dispatches hourly at :17, headers
+   `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`,
+   body `{"ref":"main"}`. Record the PAT expiry here. Then Don adds dedupe-by-hour in scripts/measure.ts (skip if
+   data/runs.jsonl already has this runId) so cron + external trigger cannot double Globalping usage.
+3. Human: link `vinu@gtechme.com` to the varshith GitHub account (Settings > Emails); commits currently show
+   author: null on GitHub.
+4. Human: join affiliate programs (DigitalOcean, Railway, Google Cloud via CJ, Cloudways, Kinsta, Hostinger,
+   UptimeRobot, Better Stack) and fill `affiliateUrl` in config/targets.json.
+5. Human: publish a sponsor contact address; src/pages/advertise.astro currently says "open a GitHub issue".
+6. Human: pick a HostBench domain; set it on the hostbench repo (not the user site); update deploy.yml SITE_URL/BASE_PATH.
+7. Human: accounts/tokens per test-page/deploy/README.md to promote hosts to controlled; optional GLOBALPING_TOKEN secret.
+8. After 4+ weeks of data: first monthly report + Show HN (April drafts the post).
+9. Low-priority pre-existing pipeline items: in-progress measurement at poll deadline counts as measured with 0
+   probes; `HOSTBENCH_ONLY=""` selects 0 targets.
 
 ## Open decisions for the human
 - Dedicated domain for HostBench, and whether to keep GitHub Pages or move to Cloudflare Pages.

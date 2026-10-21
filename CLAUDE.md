@@ -62,7 +62,7 @@ read from `data/rollups` at build time; nothing is fetched client-side.
 - `GLOBALPING_TOKEN` is not set as a repo secret; runs are unauthenticated (250 tests/h, 192 used; 58 headroom, and runner IPs may be shared, so watch `stoppedEarly` in data/runs.jsonl).
 - Only github-pages is `controlled`; the other 23 hosts measure vendor-owned reference pages. Promoting a
   host needs a human-created account/token per `test-page/deploy/README.md`.
-- The hourly cron was moved to `23 * * * *` on 2026-10-21 after the :00 slot never fired; all runs that day were manual dispatches. If scheduled runs still do not appear, that is a real bug to investigate.
+- The hourly cron was moved to `17 * * * *` on 2026-10-21 after the :00 slot never fired; all runs that day were manual dispatches. If scheduled runs still do not appear, that is a real bug to investigate.
 - `public/latest.json` and `public/series/` are build outputs and gitignored. Edit `data/`, not `public/`.
 - `dist/` is committed to nothing but present locally; ignore it.
 - DataForSEO MCP account has no credit (402); use Firecrawl SERP checks for keyword work.

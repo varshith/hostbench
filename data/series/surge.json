@@ -1,1 +1,1 @@
-{"slug":"surge","generatedAt":"2026-10-21T19:31:26.739Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[763],"regions":{"us-east":[466],"us-west":[201],"canada":[383],"western-europe":[737],"uk":[808],"india":[1645],"singapore":[891],"australia":[1179]},"availability":[100]}
+{"slug":"surge","generatedAt":"2026-10-21T20:52:26.609Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[737],"regions":{"us-east":[461],"us-west":[119],"canada":[318],"western-europe":[669],"uk":[805],"india":[1590],"singapore":[873],"australia":[1166]},"availability":[100]}

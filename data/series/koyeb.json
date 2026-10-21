@@ -1,1 +1,1 @@
-{"slug":"koyeb","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[1658],"regions":{"us-east":[399],"us-west":[619],"canada":[691],"western-europe":[333],"uk":[704],"india":[946],"singapore":[964],"australia":[1658]},"availability":[100]}
+{"slug":"koyeb","generatedAt":"2026-10-21T23:52:56.559Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[833],"regions":{"us-east":[399],"us-west":[619],"canada":[691],"western-europe":[333],"uk":[704],"india":[946],"singapore":[964],"australia":[1658]},"availability":[100]}

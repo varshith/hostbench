@@ -1,1 +1,1 @@
-{"slug":"cloudflare-workers","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[122],"regions":{"us-east":[190],"us-west":[122],"canada":[145],"western-europe":[103],"uk":[95],"india":[313],"singapore":[87],"australia":[69]},"availability":[100]}
+{"slug":"cloudflare-workers","generatedAt":"2026-10-21T23:52:56.559Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[124],"regions":{"us-east":[221],"us-west":[127],"canada":[174],"western-europe":[112],"uk":[95],"india":[313],"singapore":[101],"australia":[89]},"availability":[100]}

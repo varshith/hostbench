@@ -1,1 +1,1 @@
-{"slug":"upsun","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[506],"regions":{"us-east":[442],"us-west":[516],"canada":[369],"western-europe":[126],"uk":[197],"india":[510],"singapore":[578],"australia":[1080]},"availability":[100]}
+{"slug":"upsun","generatedAt":"2026-10-21T23:52:56.559Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[506],"regions":{"us-east":[442],"us-west":[524],"canada":[389],"western-europe":[138],"uk":[197],"india":[537],"singapore":[578],"australia":[1123]},"availability":[100]}

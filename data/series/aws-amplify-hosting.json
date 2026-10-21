@@ -1,1 +1,1 @@
-{"slug":"aws-amplify-hosting","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[88],"regions":{"us-east":[96],"us-west":[46],"canada":[109],"western-europe":[70],"uk":[34],"india":[250],"singapore":[100],"australia":[164]},"availability":[100]}
+{"slug":"aws-amplify-hosting","generatedAt":"2026-10-21T23:52:56.559Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[88],"regions":{"us-east":[97],"us-west":[46],"canada":[109],"western-europe":[70],"uk":[34],"india":[250],"singapore":[179],"australia":[164]},"availability":[100]}

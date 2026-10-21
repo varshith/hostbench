@@ -1,1 +1,1 @@
-{"slug":"cloudflare-pages","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[201],"regions":{"us-east":[216],"us-west":[195],"canada":[255],"western-europe":[190],"uk":[249],"india":[379],"singapore":[161],"australia":[116]},"availability":[100]}
+{"slug":"cloudflare-pages","generatedAt":"2026-10-21T23:52:56.559Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[195],"regions":{"us-east":[244],"us-west":[195],"canada":[267],"western-europe":[190],"uk":[249],"india":[379],"singapore":[161],"australia":[116]},"availability":[100]}

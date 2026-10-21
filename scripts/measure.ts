@@ -90,7 +90,7 @@ function toSample(target: TargetConfig, url: string, measurementId: string, prot
   };
 }
 
-async function measureTarget(target: TargetConfig, locations: GpLocation[]): Promise<{ samples: RawSample[]; tests: number; remaining: number | null }> {
+async function measureTarget(target: TargetConfig, locations: GpLocation[], onCreated: (tests: number, remaining: number | null) => void): Promise<RawSample[]> {
   const url = probeUrl(target);
   const u = new URL(url);
   const protocol = u.protocol === 'http:' ? 'HTTP' : (target.protocol ?? gp.protocol);
@@ -105,10 +105,16 @@ async function measureTarget(target: TargetConfig, locations: GpLocation[]): Pro
       ...(u.port ? { port: Number(u.port) } : {}),
     },
   });
+  // Tests are spent once Globalping accepts the measurement, even if polling later fails.
+  onCreated(created.probesCount, created.rateLimit.remaining);
   const m = await client.waitForFinished(created.id, gp.pollIntervalMs, gp.pollTimeoutMs);
   if (process.env.HOSTBENCH_DEBUG_RAW) console.log(JSON.stringify(m.results[0], null, 1).slice(0, 2500));
-  const samples = m.results.map(({ probe, result }) => toSample(target, url, created.id, protocol, probe, result));
-  return { samples, tests: created.probesCount, remaining: created.rateLimit.remaining };
+  return m.results.map(({ probe, result }) => toSample(target, url, created.id, protocol, probe, result));
+}
+
+function errorMessage(e: unknown): string {
+  if (!(e instanceof Error)) return String(e);
+  return e.cause instanceof Error ? `${e.message} (${e.cause.message})` : e.message;
 }
 
 async function main() {
@@ -121,7 +127,15 @@ async function main() {
   const only = process.env.HOSTBENCH_ONLY?.split(',').filter(Boolean);
   const todo = only ? targets.filter((t) => only.includes(t.slug)) : targets;
 
-  const limits = await client.limits();
+  let limits: Awaited<ReturnType<GlobalpingClient['limits']>>;
+  try {
+    limits = await client.limits();
+  } catch (e) {
+    // Globalping unreachable: measuring now would only record an outage of ours as host failures.
+    console.error(`[measure] aborting run: Globalping limits check failed: ${errorMessage(e)}`);
+    process.exitCode = 1;
+    return;
+  }
   if (limits) {
     log(`rate limit: ${limits.remaining}/${limits.limit} tests remaining (${limits.type}), resets in ${limits.reset}s`);
     summary.rateLimitRemaining = limits.remaining;
@@ -135,13 +149,14 @@ async function main() {
     for (const target of todo) {
       summary.targetsAttempted++;
       try {
-        const { samples, tests, remaining } = await measureTarget(target, locations);
+        const samples = await measureTarget(target, locations, (tests, remaining) => {
+          summary.testsConsumed += tests;
+          summary.rateLimitRemaining = remaining;
+        });
         all.push(...samples);
         summary.targetsMeasured++;
-        summary.testsConsumed += tests;
-        summary.rateLimitRemaining = remaining;
         const up = samples.filter((s) => s.outcome === 'up').length;
-        log(`${target.slug}: ${samples.length} probes, ${up} up, remaining=${remaining}`);
+        log(`${target.slug}: ${samples.length} probes, ${up} up, remaining=${summary.rateLimitRemaining}`);
       } catch (e) {
         if (e instanceof GlobalpingRateLimited) {
           summary.stoppedEarly = e.message;
@@ -149,7 +164,7 @@ async function main() {
           log(`stopping run: ${e.message}`);
           break;
         }
-        const msg = e instanceof Error ? e.message : String(e);
+        const msg = errorMessage(e);
         summary.errors.push({ target: target.slug, error: msg });
         log(`${target.slug}: ERROR ${msg}`);
       }
@@ -171,7 +186,7 @@ async function main() {
 }
 
 main().catch((e) => {
-  // A crash must still not fail the workflow; the next hourly run simply tries again.
-  console.error('[measure] fatal:', e);
-  process.exitCode = 0;
+  console.error(`[measure] fatal: ${errorMessage(e)}`);
+  if (e instanceof Error && e.stack) console.error(e.stack);
+  process.exitCode = 1;
 });

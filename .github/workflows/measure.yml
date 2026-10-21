@@ -19,6 +19,9 @@ concurrency:
 jobs:
   measure:
     runs-on: ubuntu-latest
+    # Worst case per target is ~150 s (30 s create + 90 s poll + one in-flight 30 s get), ~60 min for 24;
+    # samples are only written at the end, so a kill loses the hour. 6 h default would block later runs.
+    timeout-minutes: 75
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
     steps:

@@ -51,6 +51,9 @@ export class GlobalpingRateLimited extends Error {
   }
 }
 
+// A hung connection would otherwise stall the hourly job until the Actions timeout and block later runs.
+export const REQUEST_TIMEOUT_MS = 30_000;
+
 export class GlobalpingClient {
   constructor(private apiBase: string, private token: string | undefined, private userAgent: string) {}
 
@@ -65,20 +68,24 @@ export class GlobalpingClient {
     return h;
   }
 
+  private fetch(url: string, init: RequestInit = {}): Promise<Response> {
+    return fetch(url, { ...init, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+  }
+
   static rateLimitFrom(res: Response): GpRateLimit {
     const num = (k: string) => { const v = res.headers.get(k); return v == null ? null : Number(v); };
     return { limit: num('x-ratelimit-limit'), remaining: num('x-ratelimit-remaining'), reset: num('x-ratelimit-reset') };
   }
 
   async limits(): Promise<{ limit: number; remaining: number; reset: number; type: string } | null> {
-    const res = await fetch(`${this.apiBase}/limits`, { headers: this.headers() });
+    const res = await this.fetch(`${this.apiBase}/limits`, { headers: this.headers() });
     if (!res.ok) return null;
     const body = (await res.json()) as { rateLimit?: { measurements?: { create?: { limit: number; remaining: number; reset: number; type: string } } } };
     return body.rateLimit?.measurements?.create ?? null;
   }
 
   async create(req: GpCreateRequest): Promise<{ id: string; probesCount: number; rateLimit: GpRateLimit }> {
-    const res = await fetch(`${this.apiBase}/measurements`, {
+    const res = await this.fetch(`${this.apiBase}/measurements`, {
       method: 'POST',
       headers: this.headers(true),
       body: JSON.stringify(req),
@@ -97,7 +104,7 @@ export class GlobalpingClient {
   }
 
   async get(id: string): Promise<GpMeasurement> {
-    const res = await fetch(`${this.apiBase}/measurements/${id}`, { headers: this.headers() });
+    const res = await this.fetch(`${this.apiBase}/measurements/${id}`, { headers: this.headers() });
     if (!res.ok) throw new Error(`Globalping get ${id} failed: HTTP ${res.status}`);
     return (await res.json()) as GpMeasurement;
   }

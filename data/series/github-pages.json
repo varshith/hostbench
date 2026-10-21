@@ -1,1 +1,1 @@
-{"slug":"github-pages","generatedAt":"2026-10-21T16:51:14.283Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[null],"regions":{"us-east":[null],"us-west":[null],"canada":[null],"western-europe":[null],"uk":[null],"india":[null],"singapore":[null],"australia":[null]},"availability":[null]}
+{"slug":"github-pages","generatedAt":"2026-10-21T18:22:55.243Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[195],"regions":{"us-east":[102],"us-west":[195],"canada":[111],"western-europe":[223],"uk":[186],"india":[223],"singapore":[454],"australia":[242]},"availability":[100]}

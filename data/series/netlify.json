@@ -1,1 +1,1 @@
-{"slug":"netlify","generatedAt":"2026-10-21T16:51:14.283Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[562],"regions":{"us-east":[516],"us-west":[562],"canada":[412],"western-europe":[693],"uk":[609],"india":[573],"singapore":[588],"australia":[446]},"availability":[100]}
+{"slug":"netlify","generatedAt":"2026-10-21T18:22:55.243Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[573],"regions":{"us-east":[500],"us-west":[562],"canada":[412],"western-europe":[690],"uk":[609],"india":[172],"singapore":[588],"australia":[446]},"availability":[100]}

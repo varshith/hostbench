@@ -1,1 +1,1 @@
-{"slug":"northflank","generatedAt":"2026-10-21T21:52:30.447Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[321],"regions":{"us-east":[250],"us-west":[422],"canada":[316],"western-europe":[110],"uk":[34],"india":[914],"singapore":[532],"australia":[839]},"availability":[100]}
+{"slug":"northflank","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[321],"regions":{"us-east":[250],"us-west":[422],"canada":[294],"western-europe":[110],"uk":[34],"india":[666],"singapore":[510],"australia":[839]},"availability":[100]}

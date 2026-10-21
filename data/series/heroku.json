@@ -1,1 +1,1 @@
-{"slug":"heroku","generatedAt":"2026-10-21T21:52:30.447Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[256],"regions":{"us-east":[51],"us-west":[217],"canada":[94],"western-europe":[328],"uk":[242],"india":[910],"singapore":[659],"australia":[673]},"availability":[100]}
+{"slug":"heroku","generatedAt":"2026-10-21T22:52:54.354Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[303],"regions":{"us-east":[48],"us-west":[217],"canada":[94],"western-europe":[328],"uk":[242],"india":[910],"singapore":[659],"australia":[673]},"availability":[100]}

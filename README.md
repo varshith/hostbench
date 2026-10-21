@@ -5,7 +5,7 @@ Actions cron asks [Globalping](https://globalping.io) probes in 8 regions to fet
 each platform, records DNS/TCP/TLS/first-byte/total timings and status, commits the samples to this
 repo, recomputes rollups, and redeploys the static site.
 
-Live site: https://varshith.github.io/hostbench/ (see "Pages custom domain" below if it redirects).
+Live site: https://varshith.github.io/hostbench/
 
 ## Architecture
 
@@ -105,11 +105,11 @@ Ranking, region leaders/tables, biggest mover and changes for the `/report/YYYY-
 
 ## Pages custom domain
 
-The GitHub account's user site (`varshith/varshith.github.io`) has a custom domain configured
-(`vinuvarshith.com`) that does not currently resolve. GitHub redirects every `varshith.github.io/*`
-project URL to that domain, so both this site and the controlled probe 301 to a dead host until the
-owner either points the domain's DNS at GitHub Pages or removes the custom domain from that repo
-(Settings > Pages > Custom domain). Until then github-pages samples are recorded as `indeterminate`.
+The site and the controlled probe are served from `varshith.github.io`. A custom domain set on the
+account's user site (`varshith/varshith.github.io`) applies to every project site on the account; a
+stale one there once redirected both to a dead host, so keep that repo's custom domain empty unless its
+DNS actually resolves. A dedicated HostBench domain, when chosen, goes on this repo (Settings > Pages) and
+`SITE_URL`/`BASE_PATH` in `deploy.yml` change to match.
 
 ## Deploying elsewhere
 

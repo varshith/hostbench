@@ -2,7 +2,8 @@ name: Hourly measurement
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    # Off-peak minute: GitHub drops or delays schedules at :00, the busiest slot.
+    - cron: '23 * * * *'
   workflow_dispatch:
 
 permissions:

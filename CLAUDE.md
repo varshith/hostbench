@@ -1,6 +1,6 @@
 # HostBench
 
-Continuous multi-region benchmark of 14 static/edge/PaaS hosting platforms. An hourly GitHub Actions
+Continuous multi-region benchmark of 24 static/edge/PaaS hosting platforms. An hourly GitHub Actions
 cron asks Globalping probes in 8 regions to fetch one page per host, commits the samples as JSONL to
 this repo, recomputes rollups, and rebuilds an Astro 7 static site on GitHub Pages. No database, no
 server. Passive-income project (disclosed affiliates + sponsor slots). State: launched 2026-10-21,
@@ -14,7 +14,7 @@ collecting data; see README.md for the full data contract and the business ratio
 - Typecheck: `npm run check` (tsc on scripts/ + `astro check`; 0 errors, 3 hints is the baseline)
 - Aggregate: `npm run aggregate` (raw JSONL -> rollups/series/monthly; idempotent except `generatedAt`,
   so `git checkout -- data/` afterwards unless you intend to commit new data)
-- Build: `npm run build` (publish-data + `astro build` -> `dist/`, 114 pages)
+- Build: `npm run build` (publish-data + `astro build` -> `dist/`, 309 pages: 24 hosts, 276 compare, 9 other)
 - Dev server: `npm run dev` (port 4321, up in ~2 s)
 - Measure: `npm run measure` (unverified locally; runs hourly in CI). Consumes ~8 Globalping tests per
   target against a 250/h unauthenticated budget. Do not run it casually; use `HOSTBENCH_ONLY=slug` for a
@@ -23,7 +23,7 @@ collecting data; see README.md for the full data contract and the business ratio
 
 ## Architecture
 ```
-config/targets.json    14 hosts: slug, controlledUrl|null, referenceUrl, platformType, affiliate fields, protocol override
+config/targets.json    24 hosts: slug, controlledUrl|null, referenceUrl, platformType, affiliate fields, protocol override
 config/regions.json    8 Globalping location filters, one probe each
 config/pipeline.json   Globalping settings, rollup windows (24h/7d/30d), 90-day series, comparePairs
 scripts/measure.ts     one Globalping HTTP measurement per target -> data/raw/YYYY-MM-DD.jsonl + data/runs.jsonl
@@ -59,10 +59,10 @@ read from `data/rollups` at build time; nothing is fetched client-side.
   2014 custom domain `vinuvarshith.com` with no DNS, which made GitHub 301 every `varshith.github.io/*`
   URL to a dead host. It was cleared via the Pages API. If the site or the probe ever 301s again, check
   that repo's custom domain first.
-- `GLOBALPING_TOKEN` is not set as a repo secret; runs are unauthenticated (250 tests/h, 112 used).
-- Only github-pages is `controlled`; the other 13 hosts measure vendor-owned reference pages. Promoting a
+- `GLOBALPING_TOKEN` is not set as a repo secret; runs are unauthenticated (250 tests/h, 192 used; 58 headroom, and runner IPs may be shared, so watch `stoppedEarly` in data/runs.jsonl).
+- Only github-pages is `controlled`; the other 23 hosts measure vendor-owned reference pages. Promoting a
   host needs a human-created account/token per `test-page/deploy/README.md`.
-- GitHub cron can lag 30+ min; the 17:00 UTC run on launch day had not fired by 17:28.
+- The hourly cron was moved to `23 * * * *` on 2026-10-21 after the :00 slot never fired; all runs that day were manual dispatches. If scheduled runs still do not appear, that is a real bug to investigate.
 - `public/latest.json` and `public/series/` are build outputs and gitignored. Edit `data/`, not `public/`.
 - `dist/` is committed to nothing but present locally; ignore it.
 - DataForSEO MCP account has no credit (402); use Firecrawl SERP checks for keyword work.

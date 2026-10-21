@@ -10,7 +10,7 @@ Live site: https://varshith.github.io/hostbench/
 ## Architecture
 
 ```
-config/targets.json   hosts: slug, URLs, platform type, affiliate info, per-target protocol
+config/targets.json   24 hosts: slug, URLs, platform type, affiliate info, per-target protocol
 config/regions.json   8 Globalping location filters (one probe each per run)
 config/pipeline.json  protocol, timeouts, rollup windows, compare pairs
 scripts/measure.ts    one Globalping HTTP measurement per target -> data/raw/YYYY-MM-DD.jsonl
@@ -90,7 +90,8 @@ Ranking, region leaders/tables, biggest mover and changes for the `/report/YYYY-
    `protocol: null` unless the host lacks HTTP/2, in which case `"HTTPS"`).
 3. Optionally add pairs to `config/pipeline.json` `comparePairs`.
 4. `npm run measure && npm run aggregate && npm run build`. Keep total tests per run under the
-   Globalping budget: targets x 8 must stay below 250/hour (500 with a token).
+   Globalping budget: targets x 8 must stay below 250/hour (500 with a token). With 24 targets a run
+   uses 192 tests, so at most 7 more hosts fit unauthenticated.
 
 ## Promoting a host from reference to controlled
 

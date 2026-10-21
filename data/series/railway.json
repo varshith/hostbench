@@ -1,1 +1,1 @@
-{"slug":"railway","generatedAt":"2026-10-21T18:22:55.243Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[88],"regions":{"us-east":[23],"us-west":[71],"canada":[144],"western-europe":[84],"uk":[72],"india":[307],"singapore":[26],"australia":[473]},"availability":[100]}
+{"slug":"railway","generatedAt":"2026-10-21T19:31:26.739Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[88],"regions":{"us-east":[29],"us-west":[71],"canada":[144],"western-europe":[85],"uk":[112],"india":[307],"singapore":[26],"australia":[551]},"availability":[100]}

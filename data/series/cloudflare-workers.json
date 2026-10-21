@@ -1,0 +1,1 @@
+{"slug":"cloudflare-workers","generatedAt":"2026-10-21T19:31:26.739Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[121],"regions":{"us-east":[608],"us-west":[116],"canada":[297],"western-europe":[121],"uk":[211],"india":[393],"singapore":[87],"australia":[69]},"availability":[100]}

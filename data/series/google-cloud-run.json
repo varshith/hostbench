@@ -1,0 +1,1 @@
+{"slug":"google-cloud-run","generatedAt":"2026-10-21T19:31:26.739Z","metric":"ttfb-p50","days":["2026-10-21"],"global":[155],"regions":{"us-east":[65],"us-west":[84],"canada":[95],"western-europe":[155],"uk":[159],"india":[300],"singapore":[253],"australia":[323]},"availability":[100]}

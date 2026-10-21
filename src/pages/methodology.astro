@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { latest, pipeline } from '../lib/data';
+import { REPO_URL, withBase } from '../lib/site';
+import regionsJson from '../../config/regions.json';
+import pipelineJson from '../../config/pipeline.json';
+const regions = regionsJson.regions;
+const gp = pipelineJson.globalping;
+---
+<Base title="Methodology" description="How HostBench measures hosting platforms: Globalping probes in 8 regions, hourly HTTP requests, what TTFB means here, controlled vs reference targets, and limitations." path="/methodology/">
+  <h1>Methodology</h1>
+  <p class="lede">HostBench sends a small HTTP request to each hosting platform from {regions.length} regions every hour and publishes what comes back. This page covers what is measured, how it is rolled up, and where the numbers stop being useful.</p>
+
+  <h2>What we measure</h2>
+  <p>Each test is an HTTP <code>{gp.method}</code> to a small page hosted on the platform, requested over <code>{gp.protocol}</code> (TLS with HTTP/2; hosts without HTTP/2 are requested over HTTPS/1.1 and labelled as such). We run the tests through <a href="https://globalping.io">Globalping</a>, an open measurement network run by jsDelivr.</p>
+  <p>For every probe we record the HTTP status, the negotiated HTTP version, the TLS version, and these timings in milliseconds as Globalping reports them:</p>
+  <ul>
+    <li><strong>DNS</strong>: time to resolve the hostname.</li>
+    <li><strong>TCP connect</strong>: from the end of the DNS lookup to an open TCP connection.</li>
+    <li><strong>TLS handshake</strong>: from the open TCP connection to an established TLS session.</li>
+    <li><strong>First byte</strong> (Globalping's <code>firstByte</code>): from the established connection to the first byte of the response. It excludes DNS, TCP and TLS. Stored unchanged.</li>
+    <li><strong>TTFB</strong> (our headline metric): DNS + TCP + TLS + first byte, i.e. time to first byte from the start of the request. This is the figure in the leaderboard and comparison tables. Both values are published in <a href={withBase('/latest.json')}>latest.json</a>.</li>
+    <li><strong>Download</strong>: from the first byte to the end of the response.</li>
+    <li><strong>Total</strong>: the full request time.</li>
+  </ul>
+  <p>Globalping makes requests over HTTP/1.1 or HTTP/2 only. It does not make HTTP/3 requests, so HTTP/3 performance is never measured. Where a platform's response carries an <code>Alt-Svc</code> header with an <code>h3</code> token we mark HTTP/3 as <em>advertised</em>; responses without it are <em>not-advertised</em>; <em>unknown</em> means no headers were seen.</p>
+
+  <h2>Regions and cadence</h2>
+  <p>Tests run once an hour ({latest.cadence}). Each run requests one probe per region per host, so a host gets {regions.length} samples per hour. Probes are chosen by Globalping from the pool matching these filters:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Region</th><th>Filter</th><th>Probes per run</th></tr></thead>
+    <tbody>{regions.map((r) => <tr><td>{r.label}</td><td><code>{JSON.stringify({ ...r.location, limit: undefined }).replace(/,"limit":undefined/, '')}</code></td><td class="num">{r.location.limit}</td></tr>)}</tbody>
+  </table></div>
+  <p>Where the original plan listed alternatives ("Canada or Brazil", "Singapore or Japan"), one country is fixed in the configuration: Canada and Singapore. US East is Virginia and US West is California, chosen for probe density.</p>
+
+  <h2>Rollups</h2>
+  <p>Samples are rolled up into {latest.windows.join(', ')} windows, per region and globally. For TTFB, first byte, TLS and total time we publish the p50 (median) and p95 (nearest rank) over successful samples. Daily p50 series feed the sparklines and are kept for 90 days.</p>
+  <p><strong>Availability</strong> is the share of samples that returned a 2xx or 3xx status, over samples that were up or down. A timeout, a connection error or a 4xx/5xx status counts as down. Two cases are excluded rather than counted against the host: failures Globalping attributes to its own probe or to the probe's DNS resolver, and, for controlled pages, a redirect that means our page was not actually served.</p>
+  <p>If our pipeline does not run for an hour, that hour has no samples. It is never counted as downtime.</p>
+
+  <h2>Controlled and reference measurements</h2>
+  <p><strong>Controlled</strong> means we deployed our own identical ~1 KB test page (HTML plus one small stylesheet, no scripts, no external requests) on that platform. Controlled results are the fair comparison because the file is the same everywhere.</p>
+  <p><strong>Reference</strong> means we measure a small public page the vendor itself hosts on the platform, preferably on its default domain. The host page names the exact URL and describes the page. A reference result tells you how that platform's edge responds from each region; it is not an identical workload, and two reference results should not be compared as if they were. When a platform switches from reference to controlled, its page records the switch date and the monthly report lists it.</p>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li><strong>Probe networks vary.</strong> Some probes sit on residential ISPs, others in datacenters closer to CDN edges. Results reflect the probes we got, not every user in that region.</li>
+    <li><strong>Sample sizes are modest.</strong> Globalping's free tier caps tests per hour, so each region contributes {regions[0].location.limit} sample per host per hour. A 24-hour p95 rests on far fewer points than a 30-day one.</li>
+    <li><strong>Deployment region matters.</strong> Platforms serving from one origin look fast near it and slow far from it. Host pages state the region where known.</li>
+    <li><strong>Reference pages differ in size.</strong> Some vendor pages are hundreds of KB; download and total time are not comparable across those. TTFB is.</li>
+    <li><strong>TTFB is one metric.</strong> Build times, pricing, limits and support are out of scope.</li>
+    <li><strong>No vendor endorsement.</strong> No platform has reviewed or approved these numbers.</li>
+  </ul>
+
+  <h2>Reproduce it</h2>
+  <p>The pipeline, the test page and every raw per-probe sample are public at <a href={REPO_URL}>{REPO_URL}</a> (<code>data/raw/</code>, one JSON line per probe). Rollups are at <a href={withBase('/latest.json')}>latest.json</a>. You can rerun any test yourself through Globalping and compare.</p>
+
+  <h2>Report a problem</h2>
+  <p>If a number looks wrong, a reference page has moved, or you work for a platform and think we have misconfigured something, <a href={`${REPO_URL}/issues`}>open an issue</a> with the host, the region and the time window.</p>
+</Base>

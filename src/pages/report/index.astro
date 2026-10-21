@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import { monthlyReports, monthLabel } from '../../lib/data';
+import { withBase } from '../../lib/site';
+---
+<Base title="Monthly reports" description="State of Edge Hosting: auto-generated monthly rankings and movers from HostBench measurements." path="/report/">
+  <h1>State of Edge Hosting</h1>
+  <p class="lede">Monthly summaries generated from the measurement data: global ranking, regional leaders, availability and the biggest movers.</p>
+  <ul>
+    {monthlyReports.map((r) => <li><a href={withBase(`/report/${r.month}/`)}>{monthLabel(r.month)}</a>{r.partial ? ' (in progress)' : ''} · {r.sampleCount} samples, {r.hostCount} hosts</li>)}
+  </ul>
+</Base>

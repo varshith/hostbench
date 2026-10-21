@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+import KindBadge from '../../components/KindBadge.astro';
+import Sparkline from '../../components/Sparkline.astro';
+import StatsTable from '../../components/StatsTable.astro';
+import { latest, series, fmtMs, fmtPct, fmtDate, hasData, regionLabel } from '../../lib/data';
+import { withBase } from '../../lib/site';
+
+export function getStaticPaths() {
+  return latest.targets.map((t) => ({ params: { slug: t.slug }, props: { target: t } }));
+}
+const { target: t } = Astro.props;
+const s = series[t.slug];
+const g7 = t.global['7d'];
+const regionRows = latest.regions.map((r) => ({ id: r.id, label: r.label, stats: t.regions[r.id] ?? {} }));
+const windows = latest.windows;
+const description = hasData(g7)
+  ? `${t.name} benchmark: ${fmtMs(g7.ttfb.p50)} median TTFB and ${fmtPct(t.global['30d']?.availability)} availability, measured hourly from ${latest.regions.length} regions.`
+  : `${t.name} benchmark: hourly TTFB, TLS and availability measurements from ${latest.regions.length} regions. Data is being collected.`;
+const compareLinks = latest.targets.filter((o) => o.slug !== t.slug).slice(0, 6);
+---
+<Base title={`${t.name} performance benchmark`} description={description} path={`/hosts/${t.slug}/`}>
+  <h1>{t.name} <KindBadge kind={t.measurementKind} /> <span class="badge badge-type">{t.platformType}</span></h1>
+  <p class="lede">
+    {hasData(g7)
+      ? <>Global median TTFB over the last 7 days is <strong>{fmtMs(g7.ttfb.p50)}</strong> (p95 {fmtMs(g7.ttfb.p95)}); 30-day availability is <strong>{fmtPct(t.global['30d']?.availability)}</strong>. Last sample {fmtDate(t.lastSeen)}.</>
+      : <>Measurements for {t.name} are being collected. Numbers appear after the first successful hourly run.</>}
+  </p>
+
+  <dl class="facts">
+    <dt>Vendor</dt><dd><a href={t.vendorUrl} rel="noopener">{t.vendorUrl}</a></dd>
+    <dt>Measured URL</dt><dd><code>{t.probeUrl}</code></dd>
+    {t.referenceDescription && <><dt>What that page is</dt><dd>{t.referenceDescription}</dd></>}
+    <dt>Deployment region</dt><dd>{t.deployRegion ?? 'unknown'}</dd>
+    <dt>Request protocol</dt><dd>{t.requestedProtocol ?? 'HTTP2'} requested; server answered {t.httpVersion ?? <span class="collecting">collecting</span>}</dd>
+    <dt>HTTP/3</dt><dd>{t.http3}{t.http3 === 'advertised' ? ' (Alt-Svc h3 header seen; not measured)' : t.http3 === 'not-advertised' ? ' (no Alt-Svc h3 header in responses)' : ''}</dd>
+    <dt>TLS</dt><dd>{t.tlsProtocol ?? <span class="collecting">collecting</span>}</dd>
+    <dt>Server header</dt><dd>{t.server ?? 'none'}</dd>
+    {t.notes && <><dt>Notes</dt><dd>{t.notes}</dd></>}
+  </dl>
+
+  <section class="notice" aria-label="Measurement kind">
+    {t.measurementKind === 'controlled'
+      ? <p><strong>Controlled measurement.</strong> We deployed our own identical ~1 KB test page on {t.name}. These numbers are directly comparable with other controlled hosts.</p>
+      : <p><strong>Reference measurement.</strong> We have not yet deployed our own test page on {t.name}; we measure a public page the vendor hosts on this platform (named above). It shows how the {t.name} edge responds from each region, but it is not an identical workload, so compare with controlled hosts as indicative only.</p>}
+    {t.kindHistory.length > 1 && <p class="meta">Switched to {t.kindHistory[t.kindHistory.length - 1].kind} on {fmtDate(t.kindHistory[t.kindHistory.length - 1].from)}.</p>}
+  </section>
+
+  {t.hasAffiliate && t.affiliateUrl && (
+    <aside class="cta">
+      <a href={t.affiliateUrl} rel="sponsored noopener">Try {t.name}</a>
+      <small>Affiliate link: we may earn a commission if you sign up, and it never affects our rankings.</small>
+    </aside>
+  )}
+
+  <h2>Global summary</h2>
+  <StatsTable rows={windows.map((w) => ({ id: w, label: `Last ${w}`, stats: Object.fromEntries(windows.map((x) => [x, t.global[x]])) }))} window="24h" caption="Rows are time windows; p50/p95 over successful samples from all regions." />
+  <p class="meta">The row label is the window; the table above reuses the regional layout, so each row shows that window's global figures.</p>
+
+  <h2>By region</h2>
+  <div class="region-select">
+    <label>Window
+      <select id="window-select">
+        {windows.map((w) => <option value={w} selected={w === '7d'}>{w}</option>)}
+      </select>
+    </label>
+  </div>
+  {windows.map((w) => (
+    <div data-window={w} hidden={w !== '7d'}>
+      <StatsTable rows={regionRows} window={w} caption={`Per-region figures over the last ${w}.`} />
+    </div>
+  ))}
+
+  <h2>Daily trend (TTFB p50)</h2>
+  <div class="grid">
+    <div class="card"><strong>Global</strong><Sparkline values={s?.global ?? []} label={`${t.name} global daily TTFB p50`} /><span class="meta">{s?.days.length ?? 0} day(s)</span></div>
+    {latest.regions.map((r) => (
+      <div class="card"><strong>{r.label}</strong><Sparkline values={s?.regions[r.id] ?? []} label={`${t.name} ${r.label} daily TTFB p50`} /></div>
+    ))}
+  </div>
+
+  <h2>Compare</h2>
+  <ul>
+    {compareLinks.map((o) => <li><a href={withBase(`/compare/${[t.slug, o.slug].sort().join('-vs-')}/`)}>{t.name} vs {o.name}</a></li>)}
+  </ul>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <p class="meta">Questions and answers for {t.name} are being written. Until then, see the <a href={withBase('/methodology/')}>methodology</a>.</p>
+  </section>
+
+  <script>
+    const sel = document.getElementById('window-select') as HTMLSelectElement | null;
+    sel?.addEventListener('change', () => {
+      document.querySelectorAll<HTMLElement>('[data-window]').forEach((el) => { el.hidden = el.dataset.window !== sel.value; });
+    });
+  </script>
+</Base>

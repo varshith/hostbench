@@ -1,0 +1,1083 @@
+{
+ "month": "2026-10",
+ "generatedAt": "2026-10-21T16:46:39.576Z",
+ "periodStart": "2026-10-21T16:37:56.820Z",
+ "periodEnd": "2026-10-21T16:44:41.508Z",
+ "partial": true,
+ "sampleCount": 208,
+ "hostCount": 13,
+ "ranking": [
+  {
+   "slug": "vercel",
+   "name": "Vercel",
+   "measurementKind": "reference",
+   "ttfbP50": 53,
+   "ttfbP95": 519,
+   "totalP50": 55,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "fly-io",
+   "name": "Fly.io",
+   "measurementKind": "reference",
+   "ttfbP50": 57,
+   "ttfbP95": 574,
+   "totalP50": 58,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "aws-amplify-hosting",
+   "name": "AWS Amplify Hosting",
+   "measurementKind": "reference",
+   "ttfbP50": 69,
+   "ttfbP95": 361,
+   "totalP50": 70,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "railway",
+   "name": "Railway",
+   "measurementKind": "reference",
+   "ttfbP50": 84,
+   "ttfbP95": 473,
+   "totalP50": 90,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "firebase-hosting",
+   "name": "Firebase Hosting",
+   "measurementKind": "reference",
+   "ttfbP50": 129,
+   "ttfbP95": 391,
+   "totalP50": 130,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "digitalocean-app-platform",
+   "name": "DigitalOcean App Platform",
+   "measurementKind": "reference",
+   "ttfbP50": 134,
+   "ttfbP95": 717,
+   "totalP50": 135,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "cloudflare-pages",
+   "name": "Cloudflare Pages",
+   "measurementKind": "reference",
+   "ttfbP50": 189,
+   "ttfbP95": 621,
+   "totalP50": 190,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "render",
+   "name": "Render",
+   "measurementKind": "reference",
+   "ttfbP50": 290,
+   "ttfbP95": 714,
+   "totalP50": 291,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "koyeb",
+   "name": "Koyeb",
+   "measurementKind": "reference",
+   "ttfbP50": 333,
+   "ttfbP95": 816,
+   "totalP50": 333,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "deno-deploy",
+   "name": "Deno Deploy",
+   "measurementKind": "reference",
+   "ttfbP50": 432,
+   "ttfbP95": 1840,
+   "totalP50": 432,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "netlify",
+   "name": "Netlify",
+   "measurementKind": "reference",
+   "ttfbP50": 453,
+   "ttfbP95": 943,
+   "totalP50": 454,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "gitlab-pages",
+   "name": "GitLab Pages",
+   "measurementKind": "reference",
+   "ttfbP50": 478,
+   "ttfbP95": 907,
+   "totalP50": 479,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  },
+  {
+   "slug": "surge",
+   "name": "Surge",
+   "measurementKind": "reference",
+   "ttfbP50": 737,
+   "ttfbP95": 1705,
+   "totalP50": 737,
+   "availability": 100,
+   "n": 16,
+   "prevTtfbP50": null,
+   "deltaTtfbP50": null
+  }
+ ],
+ "regionLeaders": [
+  {
+   "region": "us-east",
+   "slug": "railway",
+   "name": "Railway",
+   "ttfbP50": 20
+  },
+  {
+   "region": "us-west",
+   "slug": "aws-amplify-hosting",
+   "name": "AWS Amplify Hosting",
+   "ttfbP50": 20
+  },
+  {
+   "region": "canada",
+   "slug": "vercel",
+   "name": "Vercel",
+   "ttfbP50": 53
+  },
+  {
+   "region": "western-europe",
+   "slug": "fly-io",
+   "name": "Fly.io",
+   "ttfbP50": 52
+  },
+  {
+   "region": "uk",
+   "slug": "aws-amplify-hosting",
+   "name": "AWS Amplify Hosting",
+   "ttfbP50": 27
+  },
+  {
+   "region": "india",
+   "slug": "firebase-hosting",
+   "name": "Firebase Hosting",
+   "ttfbP50": 19
+  },
+  {
+   "region": "singapore",
+   "slug": "firebase-hosting",
+   "name": "Firebase Hosting",
+   "ttfbP50": 9
+  },
+  {
+   "region": "australia",
+   "slug": "aws-amplify-hosting",
+   "name": "AWS Amplify Hosting",
+   "ttfbP50": 20
+  }
+ ],
+ "regionTables": {
+  "us-east": [
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 20,
+    "ttfbP95": 42,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 31,
+    "ttfbP95": 32,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 35,
+    "ttfbP95": 36,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 50,
+    "ttfbP95": 759,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 96,
+    "ttfbP95": 105,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 101,
+    "ttfbP95": 145,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 103,
+    "ttfbP95": 125,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 128,
+    "ttfbP95": 146,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 153,
+    "ttfbP95": 467,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 168,
+    "ttfbP95": 179,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 187,
+    "ttfbP95": 307,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 206,
+    "ttfbP95": 348,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 466,
+    "ttfbP95": 536,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "us-west": [
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 20,
+    "ttfbP95": 46,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 24,
+    "ttfbP95": 230,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 48,
+    "ttfbP95": 63,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 71,
+    "ttfbP95": 129,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 71,
+    "ttfbP95": 303,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 91,
+    "ttfbP95": 94,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 133,
+    "ttfbP95": 162,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 135,
+    "ttfbP95": 311,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 166,
+    "ttfbP95": 201,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 179,
+    "ttfbP95": 189,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 213,
+    "ttfbP95": 619,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 327,
+    "ttfbP95": 414,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 349,
+    "ttfbP95": 785,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "canada": [
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 53,
+    "ttfbP95": 70,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 57,
+    "ttfbP95": 86,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 66,
+    "ttfbP95": 240,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 84,
+    "ttfbP95": 412,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 115,
+    "ttfbP95": 234,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 134,
+    "ttfbP95": 147,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 164,
+    "ttfbP95": 304,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 169,
+    "ttfbP95": 194,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 196,
+    "ttfbP95": 364,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 225,
+    "ttfbP95": 478,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 304,
+    "ttfbP95": 636,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 363,
+    "ttfbP95": 691,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 383,
+    "ttfbP95": 690,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "western-europe": [
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 52,
+    "ttfbP95": 199,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 53,
+    "ttfbP95": 107,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 54,
+    "ttfbP95": 69,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 73,
+    "ttfbP95": 84,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 93,
+    "ttfbP95": 107,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 129,
+    "ttfbP95": 326,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 173,
+    "ttfbP95": 192,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 262,
+    "ttfbP95": 333,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 290,
+    "ttfbP95": 449,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 394,
+    "ttfbP95": 432,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 430,
+    "ttfbP95": 583,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 453,
+    "ttfbP95": 814,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 737,
+    "ttfbP95": 806,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "uk": [
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 27,
+    "ttfbP95": 34,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 45,
+    "ttfbP95": 165,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 68,
+    "ttfbP95": 79,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 75,
+    "ttfbP95": 391,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 137,
+    "ttfbP95": 274,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 188,
+    "ttfbP95": 220,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 243,
+    "ttfbP95": 249,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 250,
+    "ttfbP95": 704,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 286,
+    "ttfbP95": 429,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 452,
+    "ttfbP95": 898,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 478,
+    "ttfbP95": 624,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 622,
+    "ttfbP95": 808,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 1132,
+    "ttfbP95": 1191,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "india": [
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 19,
+    "ttfbP95": 21,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 37,
+    "ttfbP95": 49,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 216,
+    "ttfbP95": 361,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 270,
+    "ttfbP95": 388,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 274,
+    "ttfbP95": 432,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 344,
+    "ttfbP95": 355,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 467,
+    "ttfbP95": 701,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 556,
+    "ttfbP95": 574,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 573,
+    "ttfbP95": 848,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 588,
+    "ttfbP95": 621,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 637,
+    "ttfbP95": 1840,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 787,
+    "ttfbP95": 907,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 1590,
+    "ttfbP95": 1705,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "singapore": [
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 9,
+    "ttfbP95": 360,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 22,
+    "ttfbP95": 214,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 24,
+    "ttfbP95": 100,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 30,
+    "ttfbP95": 31,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 35,
+    "ttfbP95": 81,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 95,
+    "ttfbP95": 95,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 161,
+    "ttfbP95": 362,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 294,
+    "ttfbP95": 315,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 384,
+    "ttfbP95": 714,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 412,
+    "ttfbP95": 856,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 700,
+    "ttfbP95": 1350,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 836,
+    "ttfbP95": 862,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 991,
+    "ttfbP95": 1132,
+    "availability": 100,
+    "n": 2
+   }
+  ],
+  "australia": [
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 20,
+    "ttfbP95": 216,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "fly-io",
+    "name": "Fly.io",
+    "ttfbP50": 29,
+    "ttfbP95": 30,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "ttfbP50": 132,
+    "ttfbP95": 159,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "ttfbP50": 135,
+    "ttfbP95": 347,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "render",
+    "name": "Render",
+    "ttfbP50": 191,
+    "ttfbP95": 265,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "digitalocean-app-platform",
+    "name": "DigitalOcean App Platform",
+    "ttfbP50": 288,
+    "ttfbP95": 717,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "ttfbP50": 298,
+    "ttfbP95": 519,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "deno-deploy",
+    "name": "Deno Deploy",
+    "ttfbP50": 330,
+    "ttfbP95": 763,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "netlify",
+    "name": "Netlify",
+    "ttfbP50": 446,
+    "ttfbP95": 943,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "railway",
+    "name": "Railway",
+    "ttfbP50": 457,
+    "ttfbP95": 473,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "gitlab-pages",
+    "name": "GitLab Pages",
+    "ttfbP50": 700,
+    "ttfbP95": 817,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 780,
+    "ttfbP95": 816,
+    "availability": 100,
+    "n": 2
+   },
+   {
+    "slug": "surge",
+    "name": "Surge",
+    "ttfbP50": 1043,
+    "ttfbP95": 1127,
+    "availability": 100,
+    "n": 2
+   }
+  ]
+ },
+ "biggestMover": null,
+ "changes": [
+  "Cloudflare Pages was added on 2026-10-21.",
+  "Vercel was added on 2026-10-21.",
+  "Netlify was added on 2026-10-21.",
+  "Render was added on 2026-10-21.",
+  "Railway was added on 2026-10-21.",
+  "Fly.io was added on 2026-10-21.",
+  "DigitalOcean App Platform was added on 2026-10-21.",
+  "Firebase Hosting was added on 2026-10-21.",
+  "AWS Amplify Hosting was added on 2026-10-21.",
+  "Deno Deploy was added on 2026-10-21.",
+  "GitLab Pages was added on 2026-10-21.",
+  "Surge was added on 2026-10-21.",
+  "Koyeb was added on 2026-10-21."
+ ]
+}

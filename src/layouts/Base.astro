@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import { SITE_NAME, SITE_TAGLINE, REPO_URL, withBase } from '../lib/site';
+import { latest, fmtDate } from '../lib/data';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path relative to site root, e.g. "/hosts/vercel/". */
+  path: string;
+  jsonLd?: Record<string, unknown>;
+}
+const { title, description, path, jsonLd } = Astro.props;
+const canonical = new URL(withBase(path), Astro.site).toString();
+const fullTitle = path === '/' ? `${SITE_NAME}: ${SITE_TAGLINE}` : `${title} | ${SITE_NAME}`;
+const nav = [
+  ['/', 'Leaderboard'],
+  ['/compare/', 'Compare'],
+  ['/methodology/', 'Methodology'],
+  ['/report/', 'Reports'],
+  ['/advertise/', 'Advertise'],
+  ['/about/', 'About'],
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE_NAME} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href={withBase('/')}>{SITE_NAME}</a>
+      <nav aria-label="Main">
+        {nav.map(([href, label]) => <a href={withBase(href)}>{label}</a>)}
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>Data updated {fmtDate(latest.generatedAt)}. {latest.runs.total} measurement runs so far. Measurements via <a href="https://globalping.io">Globalping</a>.</p>
+      <p><a href={REPO_URL}>Source and raw data on GitHub</a> · <a href={withBase('/latest.json')}>latest.json</a> · <a href={withBase('/disclosure/')}>Affiliate disclosure</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Render Blueprint: static site serving test-page/ from the hostbench repo.
+services:
+  - type: web
+    name: hostbench-probe
+    runtime: static
+    staticPublishPath: test-page
+    buildCommand: ""
+    branch: main

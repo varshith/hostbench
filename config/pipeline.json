@@ -1,0 +1,35 @@
+{
+  "globalping": {
+    "apiBase": "https://api.globalping.io/v1",
+    "protocol": "HTTP2",
+    "method": "GET",
+    "probeTimeoutSeconds": 15,
+    "pollIntervalMs": 500,
+    "pollTimeoutMs": 90000,
+    "delayBetweenTargetsMs": 1500,
+    "minRemainingTestsToStart": 0
+  },
+  "cadence": "hourly",
+  "rollupWindows": { "24h": 1, "7d": 7, "30d": 30 },
+  "seriesDays": 90,
+  "comparePairs": [
+    ["cloudflare-pages", "vercel"],
+    ["vercel", "netlify"],
+    ["netlify", "cloudflare-pages"],
+    ["github-pages", "cloudflare-pages"],
+    ["github-pages", "netlify"],
+    ["github-pages", "vercel"],
+    ["github-pages", "gitlab-pages"],
+    ["render", "railway"],
+    ["railway", "fly-io"],
+    ["render", "fly-io"],
+    ["firebase-hosting", "netlify"],
+    ["firebase-hosting", "vercel"],
+    ["aws-amplify-hosting", "vercel"],
+    ["aws-amplify-hosting", "netlify"],
+    ["deno-deploy", "cloudflare-pages"],
+    ["digitalocean-app-platform", "render"],
+    ["koyeb", "fly-io"],
+    ["surge", "github-pages"]
+  ]
+}

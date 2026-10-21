@@ -1,0 +1,9 @@
+---
+import type { MeasurementKind } from '../../scripts/lib/types.ts';
+interface Props { kind: MeasurementKind; }
+const { kind } = Astro.props;
+const title = kind === 'controlled'
+  ? 'Controlled: our own identical 1 KB test page deployed on this platform'
+  : 'Reference: a public page the vendor hosts on this platform, not an identical workload';
+---
+<span class={`badge badge-${kind}`} title={title}>{kind}</span>

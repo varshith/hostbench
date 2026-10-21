@@ -1,0 +1,56 @@
+name: Hourly measurement
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# One measurement run at a time; never cancel a run that may be mid-commit.
+concurrency:
+  group: hostbench-measure
+  cancel-in-progress: false
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Measure
+        env:
+          GLOBALPING_TOKEN: ${{ secrets.GLOBALPING_TOKEN }}
+        run: npm run measure
+      - name: Aggregate
+        run: npm run aggregate
+      - name: Commit data
+        id: commit
+        run: |
+          git config user.name "hostbench-bot"
+          git config user.email "hostbench-bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "no data changes"
+          else
+            git commit -m "data: hourly measurement $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: measure
+    if: needs.measure.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit

@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { latest, pipeline } from '../../lib/data';
+import { withBase } from '../../lib/site';
+const pairs = pipeline.comparePairs.map(([a, b]) => [a, b].sort() as [string, string]).filter(([a, b]) => latest.targets.some((t) => t.slug === a) && latest.targets.some((t) => t.slug === b));
+const name = (slug: string) => latest.targets.find((t) => t.slug === slug)?.name ?? slug;
+---
+<Base title="Compare hosting platforms" description="Side-by-side regional TTFB and availability comparisons of hosting platforms, from hourly measurements." path="/compare/">
+  <h1>Compare hosts</h1>
+  <p class="lede">Pick two platforms, or jump to a popular pairing. Comparisons show per-region TTFB p50/p95 and availability with a winner per region.</p>
+  <form id="compare-picker" class="region-select">
+    <label>Host A <select name="a">{latest.targets.map((t) => <option value={t.slug}>{t.name}</option>)}</select></label>
+    <label>Host B <select name="b">{latest.targets.map((t, i) => <option value={t.slug} selected={i === 1}>{t.name}</option>)}</select></label>
+    <button type="submit">Compare</button>
+  </form>
+  <h2>Popular comparisons</h2>
+  <ul>
+    {pairs.map(([a, b]) => <li><a href={withBase(`/compare/${a}-vs-${b}/`)}>{name(a)} vs {name(b)}</a></li>)}
+  </ul>
+  <p class="meta">Any pair of listed hosts has a page at <code>/compare/&lt;a&gt;-vs-&lt;b&gt;/</code> with slugs in alphabetical order.</p>
+  <script define:vars={{ base: withBase('/compare/') }}>
+    document.getElementById('compare-picker')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const a = f.a.value, b = f.b.value;
+      if (a === b) return;
+      location.href = `${base}${[a, b].sort().join('-vs-')}/`;
+    });
+  </script>
+</Base>

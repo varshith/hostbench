@@ -1,0 +1,11 @@
+# AWS Amplify Hosting build spec (connect the hostbench repo; set baseDirectory as below).
+version: 1
+frontend:
+  phases:
+    build:
+      commands: []
+  artifacts:
+    baseDirectory: test-page
+    files:
+      - index.html
+      - style.css

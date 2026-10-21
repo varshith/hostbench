@@ -1,0 +1,11 @@
+# DigitalOcean App Platform spec: doctl apps create --spec test-page/deploy/do-app.yaml
+name: hostbench-probe
+region: nyc
+static_sites:
+  - name: probe
+    github:
+      repo: varshith/hostbench
+      branch: main
+      deploy_on_push: true
+    source_dir: test-page
+    output_dir: /

@@ -1,0 +1,4 @@
+# Deploy with: netlify deploy --prod --dir=test-page (run from repo root)
+[build]
+  publish = "test-page"
+  command = ""

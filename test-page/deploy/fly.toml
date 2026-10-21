@@ -1,0 +1,15 @@
+# Fly.io: a static nginx image serving test-page/. Deploy from repo root:
+#   fly launch --no-deploy --copy-config --config test-page/deploy/fly.toml --dockerfile test-page/deploy/Dockerfile.static
+#   fly deploy --config test-page/deploy/fly.toml --dockerfile test-page/deploy/Dockerfile.static
+app = "hostbench-probe"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile.static"
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1

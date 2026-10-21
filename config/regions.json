@@ -1,0 +1,12 @@
+{
+  "regions": [
+    { "id": "us-east", "label": "US East", "country": "US", "location": { "country": "US", "state": "VA", "limit": 1 } },
+    { "id": "us-west", "label": "US West", "country": "US", "location": { "country": "US", "state": "CA", "limit": 1 } },
+    { "id": "canada", "label": "Canada", "country": "CA", "location": { "country": "CA", "limit": 1 } },
+    { "id": "western-europe", "label": "Western Europe", "country": "DE", "location": { "country": "DE", "limit": 1 } },
+    { "id": "uk", "label": "United Kingdom", "country": "GB", "location": { "country": "GB", "limit": 1 } },
+    { "id": "india", "label": "India", "country": "IN", "location": { "country": "IN", "limit": 1 } },
+    { "id": "singapore", "label": "Singapore", "country": "SG", "location": { "country": "SG", "limit": 1 } },
+    { "id": "australia", "label": "Australia", "country": "AU", "location": { "country": "AU", "limit": 1 } }
+  ]
+}

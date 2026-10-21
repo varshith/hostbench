@@ -1,0 +1,24 @@
+---
+// Inline SVG so the trend is visible without JS; values are daily ttfb p50 in ms.
+interface Props { values: (number | null)[]; label: string; }
+const { values, label } = Astro.props;
+const w = 120, h = 28, pad = 2;
+const nums = values.filter((v): v is number => v != null);
+let d = '';
+if (nums.length >= 1) {
+  const min = Math.min(...nums), max = Math.max(...nums);
+  const span = max - min || 1;
+  const step = values.length > 1 ? (w - 2 * pad) / (values.length - 1) : 0;
+  const pts = values.map((v, i) => v == null ? null : [pad + i * step, h - pad - ((v - min) / span) * (h - 2 * pad)] as const);
+  let pen = false;
+  for (const p of pts) {
+    if (!p) { pen = false; continue; }
+    d += `${pen ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)} `;
+    pen = true;
+  }
+  if (nums.length === 1 && pts.length === 1) d = `M${pad} ${h / 2} L${w - pad} ${h / 2}`;
+}
+---
+<svg class="sparkline" viewBox={`0 0 ${w} ${h}`} role="img" aria-label={label}>
+  {d ? <path d={d} /> : <path class="empty" d={`M${pad} ${h / 2} L${w - pad} ${h / 2}`} />}
+</svg>

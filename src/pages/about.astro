@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { latest } from '../lib/data';
+import { REPO_URL, withBase } from '../lib/site';
+---
+<Base title="About" description="HostBench is an independent, continuously updated benchmark of static, edge and PaaS hosting platforms built on Globalping measurements." path="/about/">
+  <h1>About HostBench</h1>
+  <p class="lede">HostBench measures how quickly hosting platforms answer a small HTTP request from eight regions, every hour, and publishes the time series. It is independent of every platform it measures.</p>
+  <p>The site tracks {latest.targets.length} platforms. Measurements run through the <a href="https://globalping.io">Globalping</a> probe network, data is stored as plain JSON in a public repository, and the site is rebuilt from that data after every run. There is no database and no manual step.</p>
+  <p>Everything is open: the pipeline, the test page, the raw samples and the rollups are at <a href={REPO_URL}>{REPO_URL}</a>. The methodology is <a href={withBase('/methodology/')}>documented</a>, and we welcome corrections through GitHub issues.</p>
+  <p>HostBench is funded by disclosed affiliate links and labelled sponsor placements, neither of which affects measurements or rankings. See the <a href={withBase('/disclosure/')}>affiliate disclosure</a>.</p>
+</Base>

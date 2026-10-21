@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import KindBadge from '../components/KindBadge.astro';
+import Sparkline from '../components/Sparkline.astro';
+import { latest, leaderboard, series, fmtMs, fmtPct, fmtDate, hasData } from '../lib/data';
+import { SITE_NAME, SITE_TAGLINE, REPO_URL, withBase } from '../lib/site';
+
+const rows = leaderboard();
+const siteUrl = Astro.site?.toString() ?? '';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'HostBench hosting platform latency and availability measurements',
+  description: 'Hourly HTTP measurements (DNS, TCP, TLS, time to first byte, total, availability) of static, edge and PaaS hosting platforms from 8 regions via Globalping probes.',
+  url: siteUrl,
+  license: 'https://creativecommons.org/licenses/by/4.0/',
+  creator: { '@type': 'Organization', name: SITE_NAME, url: siteUrl },
+  temporalCoverage: `${latest.runs.first?.slice(0, 10) ?? ''}/..`,
+  measurementTechnique: 'HTTP GET via Globalping probes; p50/p95 over up samples; availability = 2xx/3xx share',
+  variableMeasured: ['ttfb', 'firstByte', 'dns', 'tcp', 'tls', 'total', 'availability'],
+  distribution: [
+    { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: new URL(withBase('/latest.json'), Astro.site).toString() },
+    { '@type': 'DataDownload', encodingFormat: 'application/x-ndjson', contentUrl: `${REPO_URL}/tree/main/data/raw` },
+  ],
+};
+---
+<Base title="Leaderboard" description={SITE_TAGLINE + '. Hourly TTFB, TLS, HTTP/3 and availability measured from 8 regions via Globalping.'} path="/" jsonLd={jsonLd}>
+  <h1>Hosting platform benchmark</h1>
+  <p class="lede">
+    This table ranks static and edge hosting platforms by how fast they answer a small HTTP request, measured every hour from {latest.regions.length} regions through the Globalping network.
+    It shows median (p50) and p95 time to first byte, total request time and availability. Last updated {fmtDate(latest.generatedAt)}.
+  </p>
+  <p class="lede">
+    Each row is labelled <KindBadge kind="controlled" /> (our own identical test page on that platform) or <KindBadge kind="reference" /> (a public page the vendor hosts there, indicative of its edge but not a like-for-like comparison).
+    <a href={withBase('/methodology/')}>How we measure</a>.
+  </p>
+
+  <div class="table-wrap">
+  <table id="leaderboard" data-sortable>
+    <thead>
+      <tr>
+        <th scope="col" data-sort="text">Host</th>
+        <th scope="col" data-sort="text">Type</th>
+        <th scope="col" data-sort="text">Measurement</th>
+        <th scope="col" class="num" data-sort="num" aria-sort="ascending">TTFB p50 (7d)</th>
+        <th scope="col" class="num" data-sort="num">TTFB p95 (7d)</th>
+        <th scope="col" class="num" data-sort="num">Availability (30d)</th>
+        <th scope="col" data-sort="text">HTTP</th>
+        <th scope="col" data-sort="text">HTTP/3</th>
+        <th scope="col">Trend (90d)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((t) => {
+        const g7 = t.global['7d'];
+        const g30 = t.global['30d'];
+        return (
+          <tr>
+            <th scope="row" data-value={t.name}><a href={withBase(`/hosts/${t.slug}/`)}>{t.name}</a></th>
+            <td data-value={t.platformType}><span class="badge badge-type">{t.platformType}</span></td>
+            <td data-value={t.measurementKind}><KindBadge kind={t.measurementKind} /></td>
+            <td class={`num${hasData(g7) ? '' : ' collecting'}`} data-value={g7?.ttfb.p50 ?? ''}>{hasData(g7) ? fmtMs(g7.ttfb.p50) : 'collecting'}</td>
+            <td class={`num${hasData(g7) ? '' : ' collecting'}`} data-value={g7?.ttfb.p95 ?? ''}>{hasData(g7) ? fmtMs(g7.ttfb.p95) : 'collecting'}</td>
+            <td class={`num${g30?.availability != null ? '' : ' collecting'}`} data-value={g30?.availability ?? ''}>{g30?.availability != null ? fmtPct(g30.availability) : 'collecting'}</td>
+            <td data-value={t.httpVersion ?? ''}>{t.httpVersion ?? <span class="collecting">collecting</span>}</td>
+            <td data-value={t.http3}>{t.http3}</td>
+            <td><Sparkline values={series[t.slug]?.global ?? []} label={`${t.name} daily TTFB p50 trend`} /></td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+  </div>
+  <p class="meta">Sorted by 7-day global TTFB p50. Click a column header to re-sort. Hosts marked "collecting" have no successful samples in the window yet.</p>
+
+  <script>
+    // Client-side sort only; the server-rendered order is already by TTFB p50.
+    const table = document.getElementById('leaderboard') as HTMLTableElement | null;
+    if (table) {
+      const headers = Array.from(table.querySelectorAll<HTMLTableCellElement>('th[data-sort]'));
+      headers.forEach((th, i) => {
+        th.addEventListener('click', () => {
+          const type = th.dataset.sort;
+          const dir = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+          headers.forEach((h) => h.removeAttribute('aria-sort'));
+          th.setAttribute('aria-sort', dir);
+          const idx = Array.from(th.parentElement!.children).indexOf(th);
+          const body = table.tBodies[0];
+          const rows = Array.from(body.rows);
+          rows.sort((a, b) => {
+            const av = a.children[idx].getAttribute('data-value') ?? '';
+            const bv = b.children[idx].getAttribute('data-value') ?? '';
+            let cmp: number;
+            if (type === 'num') {
+              const an = av === '' ? Infinity : Number(av);
+              const bn = bv === '' ? Infinity : Number(bv);
+              cmp = an - bn;
+            } else {
+              cmp = av.localeCompare(bv);
+            }
+            return dir === 'ascending' ? cmp : -cmp;
+          });
+          rows.forEach((r) => body.appendChild(r));
+        });
+      });
+    }
+  </script>
+</Base>

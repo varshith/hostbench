@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import KindBadge from '../../components/KindBadge.astro';
+import { latest, fmtMs, fmtPct, hasData } from '../../lib/data';
+import { withBase } from '../../lib/site';
+import type { TargetRollup } from '../../../scripts/lib/types.ts';
+
+export function getStaticPaths() {
+  // Every pair, slugs sorted, so the compare picker can build any URL.
+  const out = [];
+  const ts = latest.targets;
+  for (let i = 0; i < ts.length; i++) for (let j = i + 1; j < ts.length; j++) {
+    const [a, b] = [ts[i], ts[j]].sort((x, y) => x.slug.localeCompare(y.slug));
+    out.push({ params: { pair: `${a.slug}-vs-${b.slug}` }, props: { a, b } });
+  }
+  return out;
+}
+const { a, b } = Astro.props as { a: TargetRollup; b: TargetRollup };
+const W = '7d';
+function winner(x: number | null | undefined, y: number | null | undefined, lowerIsBetter = true): 'a' | 'b' | null {
+  if (x == null || y == null || x === y) return null;
+  return (lowerIsBetter ? x < y : x > y) ? 'a' : 'b';
+}
+const ga = a.global[W], gb = b.global[W];
+const globalWin = winner(hasData(ga) ? ga.ttfb.p50 : null, hasData(gb) ? gb.ttfb.p50 : null);
+const regionWins = latest.regions.map((r) => {
+  const sa = a.regions[r.id]?.[W], sb = b.regions[r.id]?.[W];
+  return { r, sa, sb, win: winner(hasData(sa) ? sa.ttfb.p50 : null, hasData(sb) ? sb.ttfb.p50 : null) };
+});
+const tallyA = regionWins.filter((x) => x.win === 'a').length;
+const tallyB = regionWins.filter((x) => x.win === 'b').length;
+const mixedKinds = a.measurementKind !== b.measurementKind;
+const description = `${a.name} vs ${b.name}: TTFB and availability by region over the last 7 days, measured hourly via Globalping.` +
+  (globalWin ? ` ${globalWin === 'a' ? a.name : b.name} has the lower global median TTFB.` : '');
+---
+<Base title={`${a.name} vs ${b.name}`} description={description} path={`/compare/${a.slug}-vs-${b.slug}/`}>
+  <h1>{a.name} vs {b.name}</h1>
+  <p class="lede">
+    Side-by-side 7-day figures from {latest.regions.length} regions.
+    {globalWin
+      ? <>Lower global median TTFB: <strong>{globalWin === 'a' ? a.name : b.name}</strong> ({fmtMs((globalWin === 'a' ? ga : gb)!.ttfb.p50)} vs {fmtMs((globalWin === 'a' ? gb : ga)!.ttfb.p50)}). Regions won: {a.name} {tallyA}, {b.name} {tallyB}.</>
+      : <>Not enough data yet to call a winner.</>}
+  </p>
+  {mixedKinds && <p class="notice">One of these is a <KindBadge kind="controlled" /> measurement and the other a <KindBadge kind="reference" /> measurement, so the pages requested are not identical. Treat this comparison as indicative.</p>}
+
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Region</th>
+        <th scope="col" class="num"><a href={withBase(`/hosts/${a.slug}/`)}>{a.name}</a> TTFB p50</th>
+        <th scope="col" class="num"><a href={withBase(`/hosts/${b.slug}/`)}>{b.name}</a> TTFB p50</th>
+        <th scope="col" class="num">{a.name} p95</th>
+        <th scope="col" class="num">{b.name} p95</th>
+        <th scope="col" class="num">{a.name} avail.</th>
+        <th scope="col" class="num">{b.name} avail.</th>
+        <th scope="col">Winner (p50)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Global</th>
+        <td class={`num${globalWin === 'a' ? ' winner' : ''}`}>{hasData(ga) ? fmtMs(ga.ttfb.p50) : <span class="collecting">collecting</span>}</td>
+        <td class={`num${globalWin === 'b' ? ' winner' : ''}`}>{hasData(gb) ? fmtMs(gb.ttfb.p50) : <span class="collecting">collecting</span>}</td>
+        <td class="num">{hasData(ga) ? fmtMs(ga.ttfb.p95) : '–'}</td>
+        <td class="num">{hasData(gb) ? fmtMs(gb.ttfb.p95) : '–'}</td>
+        <td class="num">{ga?.availability != null ? fmtPct(ga.availability) : '–'}</td>
+        <td class="num">{gb?.availability != null ? fmtPct(gb.availability) : '–'}</td>
+        <td>{globalWin ? (globalWin === 'a' ? a.name : b.name) : <span class="collecting">collecting</span>}</td>
+      </tr>
+      {regionWins.map(({ r, sa, sb, win }) => (
+        <tr>
+          <th scope="row">{r.label}</th>
+          <td class={`num${win === 'a' ? ' winner' : ''}`}>{hasData(sa) ? fmtMs(sa.ttfb.p50) : <span class="collecting">collecting</span>}</td>
+          <td class={`num${win === 'b' ? ' winner' : ''}`}>{hasData(sb) ? fmtMs(sb.ttfb.p50) : <span class="collecting">collecting</span>}</td>
+          <td class="num">{hasData(sa) ? fmtMs(sa.ttfb.p95) : '–'}</td>
+          <td class="num">{hasData(sb) ? fmtMs(sb.ttfb.p95) : '–'}</td>
+          <td class="num">{sa?.availability != null ? fmtPct(sa.availability) : '–'}</td>
+          <td class="num">{sb?.availability != null ? fmtPct(sb.availability) : '–'}</td>
+          <td>{win ? (win === 'a' ? a.name : b.name) : <span class="collecting">collecting</span>}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  </div>
+  <p class="meta">Winner is the lower TTFB p50 (dns + tcp + tls + first byte) in the window; ties and missing data give no winner. <a href={withBase('/methodology/')}>Methodology</a>.</p>
+</Base>

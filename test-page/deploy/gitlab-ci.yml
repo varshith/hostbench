@@ -1,0 +1,9 @@
+# GitLab Pages: mirror the hostbench repo to GitLab and use this as .gitlab-ci.yml.
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public && cp test-page/index.html test-page/style.css public/
+  artifacts:
+    paths: [public]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

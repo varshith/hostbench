@@ -1,0 +1,3 @@
+# Koyeb: koyeb app init hostbench-probe --git github.com/varshith/hostbench --git-branch main \
+#   --git-builder docker --git-docker-dockerfile test-page/deploy/Dockerfile.static --ports 80:http --routes /:80 --regions was
+name: hostbench-probe

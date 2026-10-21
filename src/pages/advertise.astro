@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/site';
+---
+<Base title="Advertise" description="Sponsor HostBench or book a featured-provider slot. Paid placements are labelled and never affect rankings." path="/advertise/">
+  <h1>Advertise on HostBench</h1>
+  <p class="lede">HostBench reaches developers choosing where to host. Two placements are available; both are labelled and sit outside the ranked tables.</p>
+  <section class="grid">
+    <div class="card">
+      <h2>Site sponsor</h2>
+      <p>One sponsor slot across every page: a labelled "Sponsored" card in the footer area with your logo, one line of copy and a link.</p>
+      <p class="meta">Pricing and availability: to be announced.</p>
+    </div>
+    <div class="card">
+      <h2>Featured provider</h2>
+      <p>A labelled "Featured" card on the leaderboard and on comparison pages where your platform appears, with a link to your signup page. Your measured numbers are unchanged and stay in rank order.</p>
+      <p class="meta">Pricing and availability: to be announced.</p>
+    </div>
+  </section>
+  <h2>What we do not sell</h2>
+  <p>Rank, measurement configuration, or removal of unfavourable data. See the <a href={withBase('/methodology/')}>methodology</a> and <a href={withBase('/disclosure/')}>affiliate disclosure</a>.</p>
+  <p>Contact: open an issue or discussion on the GitHub repository until a contact address is published.</p>
+</Base>

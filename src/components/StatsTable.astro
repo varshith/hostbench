@@ -1,0 +1,50 @@
+---
+import type { WindowStats } from '../../scripts/lib/types.ts';
+import { fmtMs, fmtPct, hasData, regionLabel } from '../lib/data';
+interface Props {
+  rows: { id: string; label?: string; stats: Record<string, WindowStats> }[];
+  window: string;
+  caption: string;
+}
+const { rows, window, caption } = Astro.props;
+---
+<div class="table-wrap">
+<table>
+  <caption class="meta">{caption}</caption>
+  <thead>
+    <tr>
+      <th scope="col">Region</th>
+      <th scope="col" class="num">TTFB p50</th>
+      <th scope="col" class="num">TTFB p95</th>
+      <th scope="col" class="num">First byte p50</th>
+      <th scope="col" class="num">TLS p50</th>
+      <th scope="col" class="num">Total p50</th>
+      <th scope="col" class="num">Availability</th>
+      <th scope="col" class="num">Samples</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map(({ id, label, stats }) => {
+      const s = stats[window] as WindowStats | undefined;
+      const sampled = s ? s.n : 0;
+      return hasData(s) ? (
+        <tr>
+          <th scope="row">{label ?? regionLabel(id)}</th>
+          <td class="num">{fmtMs(s.ttfb.p50)}</td>
+          <td class="num">{fmtMs(s.ttfb.p95)}</td>
+          <td class="num">{fmtMs(s.firstByte.p50)}</td>
+          <td class="num">{fmtMs(s.tls.p50)}</td>
+          <td class="num">{fmtMs(s.total.p50)}</td>
+          <td class="num">{fmtPct(s.availability)}</td>
+          <td class="num">{s.n}</td>
+        </tr>
+      ) : (
+        <tr>
+          <th scope="row">{label ?? regionLabel(id)}</th>
+          <td class="collecting" colspan="7">collecting{sampled > 0 ? ` (${sampled} samples, none successful yet)` : ''}</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+</div>

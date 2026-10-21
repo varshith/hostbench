@@ -1,0 +1,3 @@
+# Used by Fly.io, Railway, Koyeb and DigitalOcean App Platform (Docker mode). Build context = repo root.
+FROM nginx:1.27-alpine
+COPY test-page/index.html test-page/style.css /usr/share/nginx/html/

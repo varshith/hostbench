@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import KindBadge from '../../components/KindBadge.astro';
+import { monthlyReports, monthLabel, fmtMs, fmtPct, fmtDate, regionLabel, latest } from '../../lib/data';
+import { REPO_URL, withBase } from '../../lib/site';
+import type { MonthlyReport } from '../../../scripts/lib/types.ts';
+
+export function getStaticPaths() {
+  return monthlyReports.map((r) => ({ params: { month: r.month }, props: { report: r } }));
+}
+const { report: r } = Astro.props as { report: MonthlyReport };
+const label = monthLabel(r.month);
+const fastest = r.ranking.find((x) => x.ttfbP50 != null);
+const fastestP95 = [...r.ranking].filter((x) => x.ttfbP95 != null).sort((a, b) => a.ttfbP95! - b.ttfbP95!)[0];
+const availLeader = [...r.ranking].filter((x) => x.availability != null).sort((a, b) => b.availability! - a.availability! || b.n - a.n)[0];
+---
+<Base title={`State of Edge Hosting: ${label}`} description={`${label} hosting benchmark report: ${r.sampleCount} samples across ${r.hostCount} platforms and ${latest.regions.length} regions; fastest hosts by TTFB, availability leaders and biggest movers.`} path={`/report/${r.month}/`}>
+  <h1>State of Edge Hosting: {label}</h1>
+  <p class="lede">Data covers {fmtDate(r.periodStart)} to {fmtDate(r.periodEnd)}: {r.sampleCount} samples across {r.hostCount} platforms and {latest.regions.length} regions.{r.partial ? ' This month is still in progress; figures update hourly.' : ''}</p>
+  <p>All figures come from hourly HTTP requests to a small page on each platform, sent through Globalping probes. Methods and limitations are on the <a href={withBase('/methodology/')}>methodology page</a>.</p>
+
+  <h2>Summary</h2>
+  {r.sampleCount === 0 ? <p class="collecting">collecting</p> : (
+    <ul>
+      {fastest && <li>Lowest global p50 TTFB: <a href={withBase(`/hosts/${fastest.slug}/`)}>{fastest.name}</a> at {fmtMs(fastest.ttfbP50)}.</li>}
+      {fastestP95 && <li>Lowest global p95 TTFB: {fastestP95.name} at {fmtMs(fastestP95.ttfbP95)}.</li>}
+      {availLeader && <li>Highest availability: {availLeader.name} at {fmtPct(availLeader.availability)} ({availLeader.n} samples).</li>}
+      <li>Biggest change from the previous month: {r.biggestMover ? <>{r.biggestMover.name}, p50 TTFB {r.biggestMover.deltaTtfbP50 < 0 ? 'down' : 'up'} by {Math.abs(Math.round(r.biggestMover.deltaTtfbP50))} ms.</> : <span class="collecting">no previous month to compare yet</span>}</li>
+    </ul>
+  )}
+
+  <h2>Global ranking</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Host</th><th>Measurement</th><th class="num">TTFB p50</th><th class="num">TTFB p95</th><th class="num">Total p50</th><th class="num">Availability</th><th class="num">Samples</th><th class="num">vs prev. month</th></tr></thead>
+    <tbody>
+      {r.ranking.map((x, i) => (
+        <tr>
+          <td class="num">{i + 1}</td>
+          <td><a href={withBase(`/hosts/${x.slug}/`)}>{x.name}</a></td>
+          <td><KindBadge kind={x.measurementKind} /></td>
+          <td class="num">{fmtMs(x.ttfbP50)}</td>
+          <td class="num">{fmtMs(x.ttfbP95)}</td>
+          <td class="num">{fmtMs(x.totalP50)}</td>
+          <td class="num">{fmtPct(x.availability)}</td>
+          <td class="num">{x.n}</td>
+          <td class="num">{x.deltaTtfbP50 == null ? '–' : `${x.deltaTtfbP50 > 0 ? '+' : ''}${Math.round(x.deltaTtfbP50)} ms`}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table></div>
+  <p class="meta">Rows labelled "reference" measure a public page the vendor hosts on the platform, not our identical test page, so compare them with controlled rows as indicative only.</p>
+
+  <h2>By region</h2>
+  <p>Fastest p50 TTFB per region:</p>
+  <ul>{r.regionLeaders.map((l) => <li>{regionLabel(l.region)}: <a href={withBase(`/hosts/${l.slug}/`)}>{l.name}</a> ({fmtMs(l.ttfbP50)})</li>)}</ul>
+  {Object.entries(r.regionTables).map(([region, rows]) => rows.length > 0 && (
+    <details>
+      <summary>{regionLabel(region)}: {rows.length} hosts</summary>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Host</th><th class="num">TTFB p50</th><th class="num">TTFB p95</th><th class="num">Availability</th><th class="num">Samples</th></tr></thead>
+        <tbody>{rows.map((x) => <tr><td>{x.name}</td><td class="num">{fmtMs(x.ttfbP50)}</td><td class="num">{fmtMs(x.ttfbP95)}</td><td class="num">{fmtPct(x.availability)}</td><td class="num">{x.n}</td></tr>)}</tbody>
+      </table></div>
+    </details>
+  ))}
+
+  <h2>Availability</h2>
+  <p>Availability counts a sample as up when it returned a 2xx or 3xx status. Hours when our own pipeline did not run are excluded, not counted as downtime.</p>
+  <ul>{[...r.ranking].sort((a, b) => (b.availability ?? -1) - (a.availability ?? -1)).map((x) => <li>{x.name}: {fmtPct(x.availability)}</li>)}</ul>
+
+  <h2>Changes this month</h2>
+  {r.changes.length ? <ul>{r.changes.map((c) => <li>{c}</li>)}</ul> : <p>No hosts were added or reclassified this month.</p>}
+
+  <h2>Data</h2>
+  <p>The data behind this report is public at <a href={REPO_URL}>{REPO_URL}</a> (raw per-probe samples in <code>data/raw/</code> and rollups in <code>data/rollups/</code>), and the latest numbers are at <a href={withBase('/latest.json')}>latest.json</a>.</p>
+  <p>Rankings are generated automatically from measured results. Affiliate relationships and paid placements have no effect on them.</p>
+</Base>

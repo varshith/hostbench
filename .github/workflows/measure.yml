@@ -31,12 +31,23 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      # Checkout pins the SHA from trigger time; a run queued behind another must see that run's commit
+      # or the hour dedupe in measure.ts cannot work.
+      - name: Sync to current main
+        run: git pull --ff-only origin main
       - name: Measure
         env:
           GLOBALPING_TOKEN: ${{ secrets.GLOBALPING_TOKEN }}
         run: npm run measure
       - name: Aggregate
-        run: npm run aggregate
+        # A skipped (duplicate-hour) run writes no samples; re-aggregating would only bump generatedAt
+        # and trigger a pointless commit and deploy.
+        run: |
+          if git diff --quiet -- data/raw data/runs.jsonl && [ -z "$(git ls-files --others --exclude-standard data/raw)" ]; then
+            echo "no new samples; skipping aggregate"
+          else
+            npm run aggregate
+          fi
       - name: Commit data
         id: commit
         run: |

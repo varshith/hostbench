@@ -1,4 +1,4 @@
-import { appendFileSync, mkdirSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { DATA_DIR, RUNS_FILE, loadPipeline, loadRegions, loadTargets, measurementKind, probeUrl } from './lib/config.ts';
 import { GlobalpingClient, GlobalpingRateLimited, type GpHttpResult, type GpLocation, type GpProbe } from './lib/globalping.ts';
 import { appendSamples } from './lib/raw.ts';
@@ -117,6 +117,21 @@ function errorMessage(e: unknown): string {
   return e.cause instanceof Error ? `${e.message} (${e.cause.message})` : e.message;
 }
 
+function priorUsableRun(id: string): RunSummary | null {
+  if (!existsSync(RUNS_FILE)) return null;
+  for (const line of readFileSync(RUNS_FILE, 'utf8').split('\n')) {
+    if (!line.trim()) continue;
+    let run: RunSummary;
+    try {
+      run = JSON.parse(line) as RunSummary;
+    } catch {
+      continue;
+    }
+    if (run?.runId === id && run.targetsMeasured > 0 && run.stoppedEarly == null) return run;
+  }
+  return null;
+}
+
 async function main() {
   const locations: GpLocation[] = regions.map((r) => r.location);
   const testsPerTarget = locations.reduce((n, l) => n + (l.limit ?? 1), 0);
@@ -142,6 +157,13 @@ async function main() {
     if (limits.remaining < Math.max(testsPerTarget, gp.minRemainingTestsToStart)) {
       summary.stoppedEarly = `insufficient rate limit before start (${limits.remaining} remaining, need ${testsPerTarget} per target)`;
     }
+  }
+
+  const prior = process.env.HOSTBENCH_FORCE === '1' ? null : priorUsableRun(runId);
+  if (prior) {
+    // Schedule and external dispatch can both fire in one hour; a second run would double Globalping usage.
+    console.log(`[measure] skipping: hour ${runId} already measured by run started ${prior.startedAt}`);
+    return;
   }
 
   const all: RawSample[] = [];

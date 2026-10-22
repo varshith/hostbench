@@ -36,6 +36,7 @@ npm run check        # typecheck scripts + astro check
 
 Environment: `GLOBALPING_TOKEN` (optional; raises the limit from 250 to 500 tests/hour),
 `HOSTBENCH_ONLY=slug,slug` (measure a subset), `HOSTBENCH_DEBUG_RAW=1` (print one raw result),
+`HOSTBENCH_FORCE=1` (measure even if this UTC hour already has a usable run in data/runs.jsonl),
 `SITE_URL` / `BASE_PATH` (set by deploy.yml; default `http://localhost:4321` and `/`).
 
 ## Data contract

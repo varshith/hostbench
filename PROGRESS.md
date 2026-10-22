@@ -7,6 +7,7 @@
 - QA pass 1 (Raph): 131 live URLs all 200, data matches pages. Leo fixed 3 bugs: per-window host summary rows, fully-down hosts rendered as "no successful samples" instead of "collecting" (incl. monthly report), JSON-LD base URL; plus compare lede spacing. Raph re-tested: PASS.
 - Added 10 hosts (Mike verified reference pages; Don added): heroku, google-cloud-run, azure-static-web-apps, cloudflare-workers, fastly-compute, appwrite-sites, northflank, wasmer-edge, codeberg-pages, upsun. 24 targets, 192 tests/run, 44 compare pairs, 309 pages. Raph: PASS. Live run: 24/24 measured, 79 s, all new hosts up.
 - Hardened measure run (Don): 30 s request timeouts, tests counted on 202, fail fast on limits() throw, job `timeout-minutes: 75`. Raph: PASS after the cap was raised from 45.
+- Dedupe by UTC hour (Don): a second run in the same hour exits 0 and writes nothing; `HOSTBENCH_FORCE=1` bypasses. Workflow now syncs to main before measuring and skips aggregate when no new samples. Raph: PASS; verified live.
 - All commits pushed; last data run 2026-10-21T19:31Z (6 runs total).
 
 ## In flight / not working yet
@@ -15,8 +16,8 @@
   Actions incident and the schedule never recovered to hourly. A fallback loop (dispatch when the last run is
   55+ min old) kept the data series hourly from 2026-10-21 20:50 UTC and runs until 18:00 UTC 2026-10-22 while
   this session is open; after that only the cron runs. The permanent fix is the external trigger in Next steps
-  step 2 (needs a PAT from the human). Don is adding dedupe-by-hour to scripts/measure.ts so cron + external
-  trigger cannot double a run.
+  step 2 (needs a PAT from the human). Dedupe-by-hour is now in scripts/measure.ts (Raph PASS, verified live
+  12:13 UTC: duplicate run skipped, no commit, deploy skipped), so cron + external trigger can safely coexist.
 - Reference-page fragility: heroku (2025 sample app), azure-static-web-apps (2023 content) and northflank (dashboard shell) are the least stable picks; swap rather than record downtime if one goes 404.
 - Budget headroom is 58 tests/h; runner IPs may be shared. Watch `stoppedEarly` in data/runs.jsonl.
 
@@ -26,8 +27,7 @@
    Actions: Read and write), then a free cron-job.org job: POST
    https://api.github.com/repos/varshith/hostbench/actions/workflows/391950001/dispatches hourly at :17, headers
    `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`,
-   body `{"ref":"main"}`. Record the PAT expiry here. Then Don adds dedupe-by-hour in scripts/measure.ts (skip if
-   data/runs.jsonl already has this runId) so cron + external trigger cannot double Globalping usage.
+   body `{"ref":"main"}`. Record the PAT expiry here. Keep `schedule:` as backup; duplicate hours are skipped automatically.
 3. Human: link `vinu@gtechme.com` to the varshith GitHub account (Settings > Emails); commits currently show
    author: null on GitHub.
 4. Human: join affiliate programs (DigitalOcean, Railway, Google Cloud via CJ, Cloudways, Kinsta, Hostinger,

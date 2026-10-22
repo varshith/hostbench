@@ -8,16 +8,17 @@
 - Added 10 hosts (Mike verified reference pages; Don added): heroku, google-cloud-run, azure-static-web-apps, cloudflare-workers, fastly-compute, appwrite-sites, northflank, wasmer-edge, codeberg-pages, upsun. 24 targets, 192 tests/run, 44 compare pairs, 309 pages. Raph: PASS. Live run: 24/24 measured, 79 s, all new hosts up.
 - Hardened measure run (Don): 30 s request timeouts, tests counted on 202, fail fast on limits() throw, job `timeout-minutes: 75`. Raph: PASS after the cap was raised from 45.
 - Dedupe by UTC hour (Don): a second run in the same hour exits 0 and writes nothing; `HOSTBENCH_FORCE=1` bypasses. Workflow now syncs to main before measuring and skips aggregate when no new samples. Raph: PASS; verified live.
-- All commits pushed; last data run 2026-10-21T19:31Z (6 runs total).
+- All commits pushed; 32 measurement runs through 2026-10-22T19:16Z, 24 hosts each.
 
 ## In flight / not working yet
-- VERDICT on GitHub cron (2026-10-22 12:00 UTC): unreliable, fires in ~1 of 5 hourly slots (3 schedule runs in
-  20 h: 00:00, 04:42, 10:10 UTC). Nothing is misconfigured (checked by Mike); the repo was created inside a GitHub
-  Actions incident and the schedule never recovered to hourly. A fallback loop (dispatch when the last run is
-  55+ min old) kept the data series hourly from 2026-10-21 20:50 UTC and runs until 18:00 UTC 2026-10-22 while
-  this session is open; after that only the cron runs. The permanent fix is the external trigger in Next steps
-  step 2 (needs a PAT from the human). Dedupe-by-hour is now in scripts/measure.ts (Raph PASS, verified live
-  12:13 UTC: duplicate run skipped, no commit, deploy skipped), so cron + external trigger can safely coexist.
+- VERDICT on GitHub cron (2026-10-22 21:00 UTC): unreliable, 5 schedule runs in 45 h (00:00, 04:42, 10:10, 15:16,
+  19:14 UTC on 10-22), i.e. ~1 in 9 hourly slots. Nothing is misconfigured (checked by Mike); the repo was created
+  inside a GitHub Actions incident and the schedule never recovered. A session-bound fallback loop (dispatch when the
+  last run is 55+ min old, every 10 min) kept the series hourly 2026-10-21 20:50 -> 2026-10-22 18:05 UTC; hours 18
+  and 20 on 10-22 are missing because it had stopped. Re-armed at 21:15 UTC until 12:00 UTC 2026-10-23. The
+  permanent fix is the external trigger (Next steps 2). Hour dedupe in scripts/measure.ts is confirmed twice in
+  production: the forced duplicate at 12:13 and, unprompted, the 15:16 cron run arriving 2 min after a dispatch
+  (skipped, no commit, no deploy). Cron + external trigger can safely coexist.
 - Reference-page fragility: heroku (2025 sample app), azure-static-web-apps (2023 content) and northflank (dashboard shell) are the least stable picks; swap rather than record downtime if one goes 404.
 - Budget headroom is 58 tests/h; runner IPs may be shared. Watch `stoppedEarly` in data/runs.jsonl.
 

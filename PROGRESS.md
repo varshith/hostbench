@@ -10,18 +10,18 @@
 - All commits pushed; last data run 2026-10-21T19:31Z (6 runs total).
 
 ## In flight / not working yet
-- Scheduled cron is alive but erratic. Repo was created 2026-10-21 16:48 UTC inside a GitHub Actions incident;
-  no schedule run fired for 7 h. After the cron line was changed (`23` then `17 * * * *`) and pushed, GitHub fired
-  2 scheduled runs overnight (00:00 and 04:42 UTC) out of ~9 slots. A fallback loop (dispatch when the last run is
-  55+ min old) kept the series hourly from 20:50 UTC and is re-armed until 12:00 UTC 2026-10-22; after that only
-  the cron runs. CHECK: `gh run list --workflow=measure.yml --limit 12` and count `schedule` rows vs hours elapsed.
-  If still <1 per hour, the human sets up the external trigger (Next steps, step 2); the fallback loop is not a
-  permanent solution because it only runs while a session is open.
+- VERDICT on GitHub cron (2026-10-22 12:00 UTC): unreliable, fires in ~1 of 5 hourly slots (3 schedule runs in
+  20 h: 00:00, 04:42, 10:10 UTC). Nothing is misconfigured (checked by Mike); the repo was created inside a GitHub
+  Actions incident and the schedule never recovered to hourly. A fallback loop (dispatch when the last run is
+  55+ min old) kept the data series hourly from 2026-10-21 20:50 UTC and runs until 18:00 UTC 2026-10-22 while
+  this session is open; after that only the cron runs. The permanent fix is the external trigger in Next steps
+  step 2 (needs a PAT from the human). Don is adding dedupe-by-hour to scripts/measure.ts so cron + external
+  trigger cannot double a run.
 - Reference-page fragility: heroku (2025 sample app), azure-static-web-apps (2023 content) and northflank (dashboard shell) are the least stable picks; swap rather than record downtime if one goes 404.
 - Budget headroom is 58 tests/h; runner IPs may be shared. Watch `stoppedEarly` in data/runs.jsonl.
 
 ## Next steps (ordered)
-1. Count schedule runs since 12:00 UTC 2026-10-22; if roughly hourly, delete step 2 and close the cron issue.
+1. Set up the external trigger (step 2). Until then, gaps in data/runs.jsonl are expected whenever no session is open.
 2. Human, if cron still dead: create a fine-grained PAT (owner varshith, repo access: only hostbench, permission
    Actions: Read and write), then a free cron-job.org job: POST
    https://api.github.com/repos/varshith/hostbench/actions/workflows/391950001/dispatches hourly at :17, headers

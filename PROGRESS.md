@@ -1,4 +1,4 @@
-# Progress — 2026-10-21
+# Progress — 2026-10-22
 
 ## Done this session
 - Cleared the dead 2014 custom domain `vinuvarshith.com` from `varshith/varshith.github.io`; the site and probe now serve 200 at https://varshith.github.io/hostbench/ and github-pages samples are `up`.
@@ -10,20 +10,18 @@
 - All commits pushed; last data run 2026-10-21T19:31Z (6 runs total).
 
 ## In flight / not working yet
-- Scheduled cron has never fired: 5 slots missed (17:00, 18:00, 19:23, 20:23 UTC) across two minutes; all runs
-  were manual dispatches. Mike (research) found nothing misconfigured: workflow active, Actions enabled, account
-  from 2011, 0 runs with event=schedule. Likely cause: the repo was created at 16:48 UTC inside a GitHub Actions
-  incident (14:52-19:22 UTC) so the schedule never registered. GitHub staff say a push to main resyncs it
-  (community discussion #185355), so the cron minute was changed to `17 * * * *` and pushed at ~21:00 UTC.
-  A background loop in the last session dispatched a manual run whenever the last run was 55+ min old, until
-  06:00 UTC 2026-10-22, so the data series should be continuous overnight regardless.
-  CHECK FIRST: `gh api 'repos/varshith/hostbench/actions/runs?event=schedule' --jq .total_count`.
-  If still 0, the human sets up an external trigger (step 2 in Next steps).
+- Scheduled cron is alive but erratic. Repo was created 2026-10-21 16:48 UTC inside a GitHub Actions incident;
+  no schedule run fired for 7 h. After the cron line was changed (`23` then `17 * * * *`) and pushed, GitHub fired
+  2 scheduled runs overnight (00:00 and 04:42 UTC) out of ~9 slots. A fallback loop (dispatch when the last run is
+  55+ min old) kept the series hourly from 20:50 UTC and is re-armed until 12:00 UTC 2026-10-22; after that only
+  the cron runs. CHECK: `gh run list --workflow=measure.yml --limit 12` and count `schedule` rows vs hours elapsed.
+  If still <1 per hour, the human sets up the external trigger (Next steps, step 2); the fallback loop is not a
+  permanent solution because it only runs while a session is open.
 - Reference-page fragility: heroku (2025 sample app), azure-static-web-apps (2023 content) and northflank (dashboard shell) are the least stable picks; swap rather than record downtime if one goes 404.
 - Budget headroom is 58 tests/h; runner IPs may be shared. Watch `stoppedEarly` in data/runs.jsonl.
 
 ## Next steps (ordered)
-1. Confirm schedule runs exist (command above). If yes, delete step 2.
+1. Count schedule runs since 12:00 UTC 2026-10-22; if roughly hourly, delete step 2 and close the cron issue.
 2. Human, if cron still dead: create a fine-grained PAT (owner varshith, repo access: only hostbench, permission
    Actions: Read and write), then a free cron-job.org job: POST
    https://api.github.com/repos/varshith/hostbench/actions/workflows/391950001/dispatches hourly at :17, headers

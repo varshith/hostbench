@@ -15,7 +15,8 @@
   19:14 UTC on 10-22), i.e. ~1 in 9 hourly slots. Nothing is misconfigured (checked by Mike); the repo was created
   inside a GitHub Actions incident and the schedule never recovered. A session-bound fallback loop (dispatch when the
   last run is 55+ min old, every 10 min) kept the series hourly 2026-10-21 20:50 -> 2026-10-22 18:05 UTC; hours 18
-  and 20 on 10-22 are missing because it had stopped. Re-armed at 21:15 UTC until 12:00 UTC 2026-10-23. The
+  and 20 on 10-22 are missing because it had stopped. Re-armed 2026-10-22 21:15 UTC and again 2026-10-23 12:05 UTC, now until 12:00 UTC 2026-10-24 (3 schedule runs in the
+  15 h between: 22:21, 01:29, 07:30). The
   permanent fix is the external trigger (Next steps 2). Hour dedupe in scripts/measure.ts is confirmed twice in
   production: the forced duplicate at 12:13 and, unprompted, the 15:16 cron run arriving 2 min after a dispatch
   (skipped, no commit, no deploy). Cron + external trigger can safely coexist.

@@ -1,10 +1,10 @@
 {
  "month": "2026-10",
- "generatedAt": "2026-10-25T14:30:15.526Z",
+ "generatedAt": "2026-10-25T16:17:28.886Z",
  "periodStart": "2026-10-21T16:37:56.820Z",
- "periodEnd": "2026-10-25T14:30:13.675Z",
+ "periodEnd": "2026-10-25T16:17:27.085Z",
  "partial": true,
- "sampleCount": 12712,
+ "sampleCount": 12904,
  "hostCount": 24,
  "ranking": [
   {
@@ -12,10 +12,10 @@
    "name": "Firebase Hosting",
    "measurementKind": "reference",
    "ttfbP50": 42,
-   "ttfbP95": 199,
+   "ttfbP95": 203,
    "totalP50": 43,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -24,10 +24,10 @@
    "name": "Fly.io",
    "measurementKind": "reference",
    "ttfbP50": 50,
-   "ttfbP95": 606,
+   "ttfbP95": 611,
    "totalP50": 51,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -39,7 +39,7 @@
    "ttfbP95": 298,
    "totalP50": 58,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -51,7 +51,7 @@
    "ttfbP95": 493,
    "totalP50": 76,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -59,11 +59,11 @@
    "slug": "railway",
    "name": "Railway",
    "measurementKind": "reference",
-   "ttfbP50": 93,
+   "ttfbP50": 95,
    "ttfbP95": 563,
    "totalP50": 100,
    "availability": 98.7,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -72,10 +72,10 @@
    "name": "Wasmer Edge",
    "measurementKind": "reference",
    "ttfbP50": 116,
-   "ttfbP95": 654,
+   "ttfbP95": 661,
    "totalP50": 117,
    "availability": 99.8,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -87,7 +87,7 @@
    "ttfbP95": 577,
    "totalP50": 120,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -96,10 +96,10 @@
    "name": "DigitalOcean App Platform",
    "measurementKind": "reference",
    "ttfbP50": 134,
-   "ttfbP95": 458,
+   "ttfbP95": 466,
    "totalP50": 136,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -107,11 +107,11 @@
    "slug": "cloudflare-pages",
    "name": "Cloudflare Pages",
    "measurementKind": "reference",
-   "ttfbP50": 179,
+   "ttfbP50": 178,
    "ttfbP95": 534,
-   "totalP50": 180,
+   "totalP50": 179,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -120,10 +120,10 @@
    "name": "Google Cloud Run",
    "measurementKind": "reference",
    "ttfbP50": 187,
-   "ttfbP95": 555,
+   "ttfbP95": 553,
    "totalP50": 187,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -135,7 +135,7 @@
    "ttfbP95": 792,
    "totalP50": 211,
    "availability": 100,
-   "n": 520,
+   "n": 528,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -143,11 +143,11 @@
    "slug": "render",
    "name": "Render",
    "measurementKind": "reference",
-   "ttfbP50": 293,
+   "ttfbP50": 292,
    "ttfbP95": 495,
-   "totalP50": 294,
+   "totalP50": 293,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -159,7 +159,7 @@
    "ttfbP95": 912,
    "totalP50": 306,
    "availability": 99.8,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -168,10 +168,10 @@
    "name": "Azure Static Web Apps",
    "measurementKind": "reference",
    "ttfbP50": 329,
-   "ttfbP95": 862,
+   "ttfbP95": 860,
    "totalP50": 333,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -180,10 +180,10 @@
    "name": "Fastly Compute",
    "measurementKind": "reference",
    "ttfbP50": 396,
-   "ttfbP95": 842,
+   "ttfbP95": 827,
    "totalP50": 396,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -191,11 +191,11 @@
    "slug": "northflank",
    "name": "Northflank",
    "measurementKind": "reference",
-   "ttfbP50": 413,
-   "ttfbP95": 893,
-   "totalP50": 415,
+   "ttfbP50": 414,
+   "ttfbP95": 892,
+   "totalP50": 418,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -207,7 +207,7 @@
    "ttfbP95": 856,
    "totalP50": 435,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -219,7 +219,7 @@
    "ttfbP95": 923,
    "totalP50": 441,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -231,7 +231,7 @@
    "ttfbP95": 1106,
    "totalP50": 547,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -241,9 +241,9 @@
    "measurementKind": "reference",
    "ttfbP50": 522,
    "ttfbP95": 1145,
-   "totalP50": 523,
+   "totalP50": 522,
    "availability": 100,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -251,11 +251,11 @@
    "slug": "deno-deploy",
    "name": "Deno Deploy",
    "measurementKind": "reference",
-   "ttfbP50": 579,
+   "ttfbP50": 577,
    "ttfbP95": 1783,
-   "totalP50": 580,
+   "totalP50": 577,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -263,11 +263,11 @@
    "slug": "appwrite-sites",
    "name": "Appwrite Sites",
    "measurementKind": "reference",
-   "ttfbP50": 633,
-   "ttfbP95": 2532,
+   "ttfbP50": 634,
+   "ttfbP95": 2673,
    "totalP50": 635,
    "availability": 99.8,
-   "n": 512,
+   "n": 520,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -275,11 +275,11 @@
    "slug": "surge",
    "name": "Surge",
    "measurementKind": "reference",
-   "ttfbP50": 728,
-   "ttfbP95": 1660,
-   "totalP50": 729,
+   "ttfbP50": 725,
+   "ttfbP95": 1661,
+   "totalP50": 725,
    "availability": 100,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   },
@@ -287,11 +287,11 @@
    "slug": "koyeb",
    "name": "Koyeb",
    "measurementKind": "reference",
-   "ttfbP50": 865,
-   "ttfbP95": 8201,
-   "totalP50": 866,
+   "ttfbP50": 916,
+   "ttfbP95": 9335,
+   "totalP50": 916,
    "availability": 99.8,
-   "n": 544,
+   "n": 552,
    "prevTtfbP50": null,
    "deltaTtfbP50": null
   }
@@ -307,13 +307,13 @@
    "region": "us-west",
    "slug": "fly-io",
    "name": "Fly.io",
-   "ttfbP50": 32
+   "ttfbP50": 33
   },
   {
    "region": "canada",
    "slug": "firebase-hosting",
    "name": "Firebase Hosting",
-   "ttfbP50": 53
+   "ttfbP50": 54
   },
   {
    "region": "western-europe",
@@ -325,13 +325,13 @@
    "region": "uk",
    "slug": "firebase-hosting",
    "name": "Firebase Hosting",
-   "ttfbP50": 35
+   "ttfbP50": 36
   },
   {
    "region": "india",
    "slug": "firebase-hosting",
    "name": "Firebase Hosting",
-   "ttfbP50": 17
+   "ttfbP50": 18
   },
   {
    "region": "singapore",
@@ -354,7 +354,7 @@
     "ttfbP50": 25,
     "ttfbP95": 146,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fly-io",
@@ -362,7 +362,7 @@
     "ttfbP50": 28,
     "ttfbP95": 54,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "railway",
@@ -370,7 +370,7 @@
     "ttfbP50": 42,
     "ttfbP95": 122,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "vercel",
@@ -378,15 +378,7 @@
     "ttfbP50": 53,
     "ttfbP95": 173,
     "availability": 100,
-    "n": 68
-   },
-   {
-    "slug": "heroku",
-    "name": "Heroku",
-    "ttfbP50": 59,
-    "ttfbP95": 95,
-    "availability": 100,
-    "n": 64
+    "n": 69
    },
    {
     "slug": "google-cloud-run",
@@ -394,7 +386,15 @@
     "ttfbP50": 59,
     "ttfbP95": 80,
     "availability": 100,
-    "n": 64
+    "n": 65
+   },
+   {
+    "slug": "heroku",
+    "name": "Heroku",
+    "ttfbP50": 60,
+    "ttfbP95": 95,
+    "availability": 100,
+    "n": 65
    },
    {
     "slug": "github-pages",
@@ -402,7 +402,7 @@
     "ttfbP50": 63,
     "ttfbP95": 1057,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "aws-amplify-hosting",
@@ -410,7 +410,7 @@
     "ttfbP50": 93,
     "ttfbP95": 298,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
@@ -418,7 +418,7 @@
     "ttfbP50": 103,
     "ttfbP95": 243,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "digitalocean-app-platform",
@@ -426,7 +426,7 @@
     "ttfbP50": 106,
     "ttfbP95": 201,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
@@ -434,15 +434,15 @@
     "ttfbP50": 120,
     "ttfbP95": 324,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "azure-static-web-apps",
     "name": "Azure Static Web Apps",
-    "ttfbP50": 166,
+    "ttfbP50": 170,
     "ttfbP95": 234,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "cloudflare-pages",
@@ -450,7 +450,7 @@
     "ttfbP50": 176,
     "ttfbP95": 467,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "gitlab-pages",
@@ -458,15 +458,15 @@
     "ttfbP50": 188,
     "ttfbP95": 367,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "koyeb",
     "name": "Koyeb",
-    "ttfbP50": 222,
-    "ttfbP95": 7653,
+    "ttfbP50": 230,
+    "ttfbP95": 8289,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "northflank",
@@ -474,7 +474,7 @@
     "ttfbP50": 249,
     "ttfbP95": 276,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "render",
@@ -482,15 +482,15 @@
     "ttfbP50": 259,
     "ttfbP95": 412,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "codeberg-pages",
     "name": "Codeberg Pages",
     "ttfbP50": 366,
-    "ttfbP95": 513,
+    "ttfbP95": 519,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "deno-deploy",
@@ -498,7 +498,7 @@
     "ttfbP50": 374,
     "ttfbP95": 649,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fastly-compute",
@@ -506,15 +506,15 @@
     "ttfbP50": 392,
     "ttfbP95": 701,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "surge",
     "name": "Surge",
-    "ttfbP50": 408,
+    "ttfbP50": 414,
     "ttfbP95": 583,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "netlify",
@@ -522,7 +522,7 @@
     "ttfbP50": 435,
     "ttfbP95": 759,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "upsun",
@@ -530,7 +530,7 @@
     "ttfbP50": 446,
     "ttfbP95": 661,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "appwrite-sites",
@@ -538,17 +538,17 @@
     "ttfbP50": 514,
     "ttfbP95": 820,
     "availability": 100,
-    "n": 64
+    "n": 65
    }
   ],
   "us-west": [
    {
     "slug": "fly-io",
     "name": "Fly.io",
-    "ttfbP50": 32,
+    "ttfbP50": 33,
     "ttfbP95": 82,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "aws-amplify-hosting",
@@ -556,31 +556,31 @@
     "ttfbP50": 40,
     "ttfbP95": 98,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "railway",
     "name": "Railway",
-    "ttfbP50": 58,
+    "ttfbP50": 59,
     "ttfbP95": 129,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "firebase-hosting",
     "name": "Firebase Hosting",
-    "ttfbP50": 58,
+    "ttfbP50": 61,
     "ttfbP95": 222,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "surge",
     "name": "Surge",
-    "ttfbP50": 70,
+    "ttfbP50": 71,
     "ttfbP95": 306,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "vercel",
@@ -588,31 +588,31 @@
     "ttfbP50": 73,
     "ttfbP95": 201,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
     "name": "Wasmer Edge",
-    "ttfbP50": 79,
-    "ttfbP95": 223,
+    "ttfbP50": 86,
+    "ttfbP95": 228,
     "availability": 98.4,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "deno-deploy",
     "name": "Deno Deploy",
-    "ttfbP50": 90,
+    "ttfbP50": 91,
     "ttfbP95": 244,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "google-cloud-run",
     "name": "Google Cloud Run",
-    "ttfbP50": 93,
+    "ttfbP50": 94,
     "ttfbP95": 147,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "digitalocean-app-platform",
@@ -620,15 +620,15 @@
     "ttfbP50": 107,
     "ttfbP95": 207,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
     "name": "Cloudflare Workers (Static Assets)",
-    "ttfbP50": 117,
-    "ttfbP95": 249,
+    "ttfbP50": 119,
+    "ttfbP95": 253,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "github-pages",
@@ -636,7 +636,7 @@
     "ttfbP50": 121,
     "ttfbP95": 268,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "cloudflare-pages",
@@ -644,7 +644,7 @@
     "ttfbP50": 193,
     "ttfbP95": 363,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "heroku",
@@ -652,7 +652,7 @@
     "ttfbP50": 221,
     "ttfbP95": 258,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "render",
@@ -660,15 +660,7 @@
     "ttfbP50": 224,
     "ttfbP95": 347,
     "availability": 100,
-    "n": 68
-   },
-   {
-    "slug": "koyeb",
-    "name": "Koyeb",
-    "ttfbP50": 336,
-    "ttfbP95": 7636,
-    "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "azure-static-web-apps",
@@ -676,7 +668,7 @@
     "ttfbP50": 338,
     "ttfbP95": 516,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "gitlab-pages",
@@ -684,23 +676,31 @@
     "ttfbP50": 341,
     "ttfbP95": 481,
     "availability": 100,
-    "n": 68
+    "n": 69
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 344,
+    "ttfbP95": 9051,
+    "availability": 100,
+    "n": 69
    },
    {
     "slug": "netlify",
     "name": "Netlify",
-    "ttfbP50": 375,
+    "ttfbP50": 379,
     "ttfbP95": 777,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "northflank",
     "name": "Northflank",
-    "ttfbP50": 431,
+    "ttfbP50": 432,
     "ttfbP95": 465,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "codeberg-pages",
@@ -708,7 +708,7 @@
     "ttfbP50": 471,
     "ttfbP95": 587,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "fastly-compute",
@@ -716,7 +716,7 @@
     "ttfbP50": 497,
     "ttfbP95": 1001,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "upsun",
@@ -724,7 +724,7 @@
     "ttfbP50": 533,
     "ttfbP95": 624,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "appwrite-sites",
@@ -732,17 +732,17 @@
     "ttfbP50": 679,
     "ttfbP95": 1531,
     "availability": 100,
-    "n": 64
+    "n": 65
    }
   ],
   "canada": [
    {
     "slug": "firebase-hosting",
     "name": "Firebase Hosting",
-    "ttfbP50": 53,
-    "ttfbP95": 229,
+    "ttfbP50": 54,
+    "ttfbP95": 240,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fly-io",
@@ -750,23 +750,23 @@
     "ttfbP50": 55,
     "ttfbP95": 305,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "heroku",
     "name": "Heroku",
-    "ttfbP50": 75,
+    "ttfbP50": 76,
     "ttfbP95": 146,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "vercel",
     "name": "Vercel",
-    "ttfbP50": 80,
+    "ttfbP50": 82,
     "ttfbP95": 330,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "github-pages",
@@ -774,15 +774,15 @@
     "ttfbP50": 95,
     "ttfbP95": 347,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "google-cloud-run",
     "name": "Google Cloud Run",
-    "ttfbP50": 105,
+    "ttfbP50": 107,
     "ttfbP95": 399,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "aws-amplify-hosting",
@@ -790,7 +790,7 @@
     "ttfbP50": 109,
     "ttfbP95": 239,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
@@ -798,15 +798,15 @@
     "ttfbP50": 120,
     "ttfbP95": 298,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "railway",
     "name": "Railway",
     "ttfbP50": 133,
     "ttfbP95": 303,
-    "availability": 98.5,
-    "n": 68
+    "availability": 98.6,
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
@@ -814,23 +814,23 @@
     "ttfbP50": 141,
     "ttfbP95": 607,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "digitalocean-app-platform",
     "name": "DigitalOcean App Platform",
-    "ttfbP50": 152,
+    "ttfbP50": 154,
     "ttfbP95": 261,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-pages",
     "name": "Cloudflare Pages",
-    "ttfbP50": 219,
+    "ttfbP50": 217,
     "ttfbP95": 574,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "gitlab-pages",
@@ -838,7 +838,7 @@
     "ttfbP50": 262,
     "ttfbP95": 478,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "render",
@@ -846,7 +846,7 @@
     "ttfbP50": 268,
     "ttfbP95": 392,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "northflank",
@@ -854,7 +854,7 @@
     "ttfbP50": 301,
     "ttfbP95": 412,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "surge",
@@ -862,23 +862,23 @@
     "ttfbP50": 338,
     "ttfbP95": 686,
     "availability": 100,
-    "n": 68
-   },
-   {
-    "slug": "codeberg-pages",
-    "name": "Codeberg Pages",
-    "ttfbP50": 378,
-    "ttfbP95": 745,
-    "availability": 100,
-    "n": 64
+    "n": 69
    },
    {
     "slug": "koyeb",
     "name": "Koyeb",
     "ttfbP50": 379,
-    "ttfbP95": 8548,
-    "availability": 98.5,
-    "n": 68
+    "ttfbP95": 9911,
+    "availability": 98.6,
+    "n": 69
+   },
+   {
+    "slug": "codeberg-pages",
+    "name": "Codeberg Pages",
+    "ttfbP50": 381,
+    "ttfbP95": 745,
+    "availability": 100,
+    "n": 65
    },
    {
     "slug": "azure-static-web-apps",
@@ -886,15 +886,15 @@
     "ttfbP50": 388,
     "ttfbP95": 546,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "upsun",
     "name": "Upsun (Platform.sh)",
-    "ttfbP50": 395,
+    "ttfbP50": 399,
     "ttfbP95": 622,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "netlify",
@@ -902,7 +902,7 @@
     "ttfbP50": 424,
     "ttfbP95": 868,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fastly-compute",
@@ -910,7 +910,7 @@
     "ttfbP50": 586,
     "ttfbP95": 877,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "deno-deploy",
@@ -918,15 +918,15 @@
     "ttfbP50": 591,
     "ttfbP95": 920,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "appwrite-sites",
     "name": "Appwrite Sites",
-    "ttfbP50": 650,
+    "ttfbP50": 664,
     "ttfbP95": 1186,
     "availability": 100,
-    "n": 64
+    "n": 65
    }
   ],
   "western-europe": [
@@ -936,7 +936,7 @@
     "ttfbP50": 55,
     "ttfbP95": 180,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fly-io",
@@ -944,15 +944,15 @@
     "ttfbP50": 56,
     "ttfbP95": 152,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "codeberg-pages",
     "name": "Codeberg Pages",
-    "ttfbP50": 61,
+    "ttfbP50": 62,
     "ttfbP95": 178,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "aws-amplify-hosting",
@@ -960,7 +960,7 @@
     "ttfbP50": 66,
     "ttfbP95": 99,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "firebase-hosting",
@@ -968,23 +968,23 @@
     "ttfbP50": 73,
     "ttfbP95": 193,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "railway",
     "name": "Railway",
-    "ttfbP50": 79,
+    "ttfbP50": 80,
     "ttfbP95": 108,
     "availability": 97.1,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "digitalocean-app-platform",
     "name": "DigitalOcean App Platform",
-    "ttfbP50": 97,
+    "ttfbP50": 98,
     "ttfbP95": 250,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
@@ -992,7 +992,7 @@
     "ttfbP50": 98,
     "ttfbP95": 181,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "northflank",
@@ -1000,15 +1000,15 @@
     "ttfbP50": 102,
     "ttfbP95": 168,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "cloudflare-workers",
     "name": "Cloudflare Workers (Static Assets)",
-    "ttfbP50": 120,
+    "ttfbP50": 121,
     "ttfbP95": 193,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "upsun",
@@ -1016,15 +1016,15 @@
     "ttfbP50": 125,
     "ttfbP95": 154,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "cloudflare-pages",
     "name": "Cloudflare Pages",
-    "ttfbP50": 169,
+    "ttfbP50": 171,
     "ttfbP95": 376,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "google-cloud-run",
@@ -1032,39 +1032,39 @@
     "ttfbP50": 189,
     "ttfbP95": 295,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "github-pages",
     "name": "GitHub Pages",
-    "ttfbP50": 208,
+    "ttfbP50": 209,
     "ttfbP95": 345,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "appwrite-sites",
     "name": "Appwrite Sites",
-    "ttfbP50": 242,
+    "ttfbP50": 244,
     "ttfbP95": 457,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "azure-static-web-apps",
     "name": "Azure Static Web Apps",
-    "ttfbP50": 266,
+    "ttfbP50": 267,
     "ttfbP95": 624,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "heroku",
     "name": "Heroku",
     "ttfbP50": 316,
     "ttfbP95": 376,
-    "availability": 98.4,
-    "n": 64
+    "availability": 98.5,
+    "n": 65
    },
    {
     "slug": "render",
@@ -1072,15 +1072,15 @@
     "ttfbP50": 363,
     "ttfbP95": 492,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "koyeb",
     "name": "Koyeb",
-    "ttfbP50": 368,
-    "ttfbP95": 7608,
+    "ttfbP50": 370,
+    "ttfbP95": 8841,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "deno-deploy",
@@ -1088,15 +1088,15 @@
     "ttfbP50": 408,
     "ttfbP95": 1277,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "gitlab-pages",
     "name": "GitLab Pages",
-    "ttfbP50": 439,
-    "ttfbP95": 585,
+    "ttfbP50": 440,
+    "ttfbP95": 599,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fastly-compute",
@@ -1104,15 +1104,15 @@
     "ttfbP50": 473,
     "ttfbP95": 842,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "netlify",
     "name": "Netlify",
-    "ttfbP50": 538,
+    "ttfbP50": 544,
     "ttfbP95": 861,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "surge",
@@ -1120,41 +1120,41 @@
     "ttfbP50": 715,
     "ttfbP95": 898,
     "availability": 100,
-    "n": 68
+    "n": 69
    }
   ],
   "uk": [
    {
     "slug": "firebase-hosting",
     "name": "Firebase Hosting",
-    "ttfbP50": 35,
+    "ttfbP50": 36,
     "ttfbP95": 148,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "northflank",
     "name": "Northflank",
-    "ttfbP50": 55,
-    "ttfbP95": 217,
+    "ttfbP50": 56,
+    "ttfbP95": 229,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "aws-amplify-hosting",
     "name": "AWS Amplify Hosting",
-    "ttfbP50": 58,
+    "ttfbP50": 60,
     "ttfbP95": 304,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
     "name": "Wasmer Edge",
-    "ttfbP50": 63,
+    "ttfbP50": 66,
     "ttfbP95": 237,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "vercel",
@@ -1162,23 +1162,23 @@
     "ttfbP50": 81,
     "ttfbP95": 470,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "railway",
     "name": "Railway",
-    "ttfbP50": 90,
-    "ttfbP95": 306,
+    "ttfbP50": 91,
+    "ttfbP95": 505,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
     "name": "Cloudflare Workers (Static Assets)",
-    "ttfbP50": 112,
+    "ttfbP50": 113,
     "ttfbP95": 244,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "codeberg-pages",
@@ -1186,7 +1186,7 @@
     "ttfbP50": 119,
     "ttfbP95": 618,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "github-pages",
@@ -1194,23 +1194,23 @@
     "ttfbP50": 139,
     "ttfbP95": 324,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "fastly-compute",
     "name": "Fastly Compute",
-    "ttfbP50": 140,
+    "ttfbP50": 152,
     "ttfbP95": 693,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "google-cloud-run",
     "name": "Google Cloud Run",
-    "ttfbP50": 154,
+    "ttfbP50": 155,
     "ttfbP95": 252,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "digitalocean-app-platform",
@@ -1218,7 +1218,7 @@
     "ttfbP50": 159,
     "ttfbP95": 282,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-pages",
@@ -1226,31 +1226,23 @@
     "ttfbP50": 162,
     "ttfbP95": 952,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "upsun",
     "name": "Upsun (Platform.sh)",
-    "ttfbP50": 163,
+    "ttfbP50": 164,
     "ttfbP95": 539,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "fly-io",
     "name": "Fly.io",
-    "ttfbP50": 233,
+    "ttfbP50": 237,
     "ttfbP95": 455,
     "availability": 100,
-    "n": 68
-   },
-   {
-    "slug": "azure-static-web-apps",
-    "name": "Azure Static Web Apps",
-    "ttfbP50": 244,
-    "ttfbP95": 1056,
-    "availability": 100,
-    "n": 64
+    "n": 69
    },
    {
     "slug": "heroku",
@@ -1258,7 +1250,7 @@
     "ttfbP50": 248,
     "ttfbP95": 323,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "appwrite-sites",
@@ -1266,15 +1258,23 @@
     "ttfbP50": 251,
     "ttfbP95": 915,
     "availability": 100,
-    "n": 64
+    "n": 65
+   },
+   {
+    "slug": "azure-static-web-apps",
+    "name": "Azure Static Web Apps",
+    "ttfbP50": 252,
+    "ttfbP95": 1056,
+    "availability": 100,
+    "n": 65
    },
    {
     "slug": "koyeb",
     "name": "Koyeb",
-    "ttfbP50": 321,
-    "ttfbP95": 7720,
+    "ttfbP50": 343,
+    "ttfbP95": 8822,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "render",
@@ -1282,7 +1282,7 @@
     "ttfbP50": 361,
     "ttfbP95": 464,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "gitlab-pages",
@@ -1290,7 +1290,7 @@
     "ttfbP50": 417,
     "ttfbP95": 599,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "netlify",
@@ -1298,7 +1298,7 @@
     "ttfbP50": 567,
     "ttfbP95": 898,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "surge",
@@ -1306,7 +1306,7 @@
     "ttfbP50": 786,
     "ttfbP95": 1023,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "deno-deploy",
@@ -1314,17 +1314,17 @@
     "ttfbP50": 1123,
     "ttfbP95": 1330,
     "availability": 100,
-    "n": 68
+    "n": 69
    }
   ],
   "india": [
    {
     "slug": "firebase-hosting",
     "name": "Firebase Hosting",
-    "ttfbP50": 17,
+    "ttfbP50": 18,
     "ttfbP95": 192,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "vercel",
@@ -1332,7 +1332,7 @@
     "ttfbP50": 38,
     "ttfbP95": 509,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
@@ -1340,15 +1340,15 @@
     "ttfbP50": 115,
     "ttfbP95": 461,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "cloudflare-pages",
     "name": "Cloudflare Pages",
-    "ttfbP50": 175,
+    "ttfbP50": 176,
     "ttfbP95": 706,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "github-pages",
@@ -1356,7 +1356,7 @@
     "ttfbP50": 255,
     "ttfbP95": 1271,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "fastly-compute",
@@ -1364,7 +1364,7 @@
     "ttfbP50": 266,
     "ttfbP95": 522,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "aws-amplify-hosting",
@@ -1372,7 +1372,7 @@
     "ttfbP50": 276,
     "ttfbP95": 750,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
@@ -1380,7 +1380,7 @@
     "ttfbP50": 292,
     "ttfbP95": 752,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "digitalocean-app-platform",
@@ -1388,7 +1388,7 @@
     "ttfbP50": 325,
     "ttfbP95": 533,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "google-cloud-run",
@@ -1396,15 +1396,15 @@
     "ttfbP50": 335,
     "ttfbP95": 416,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "railway",
     "name": "Railway",
     "ttfbP50": 341,
     "ttfbP95": 440,
-    "availability": 94.1,
-    "n": 68
+    "availability": 94.2,
+    "n": 69
    },
    {
     "slug": "render",
@@ -1412,23 +1412,23 @@
     "ttfbP50": 359,
     "ttfbP95": 615,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "netlify",
     "name": "Netlify",
-    "ttfbP50": 469,
+    "ttfbP50": 510,
     "ttfbP95": 923,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fly-io",
     "name": "Fly.io",
-    "ttfbP50": 583,
+    "ttfbP50": 592,
     "ttfbP95": 852,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "northflank",
@@ -1436,7 +1436,7 @@
     "ttfbP50": 661,
     "ttfbP95": 922,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "azure-static-web-apps",
@@ -1444,7 +1444,7 @@
     "ttfbP50": 682,
     "ttfbP95": 925,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "codeberg-pages",
@@ -1452,7 +1452,7 @@
     "ttfbP50": 722,
     "ttfbP95": 1087,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "heroku",
@@ -1460,7 +1460,7 @@
     "ttfbP50": 784,
     "ttfbP95": 1003,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "gitlab-pages",
@@ -1468,15 +1468,15 @@
     "ttfbP50": 814,
     "ttfbP95": 1076,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "appwrite-sites",
     "name": "Appwrite Sites",
     "ttfbP50": 889,
     "ttfbP95": 1085,
-    "availability": 98.4,
-    "n": 64
+    "availability": 98.5,
+    "n": 65
    },
    {
     "slug": "upsun",
@@ -1484,15 +1484,15 @@
     "ttfbP50": 912,
     "ttfbP95": 1359,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "koyeb",
     "name": "Koyeb",
-    "ttfbP50": 941,
-    "ttfbP95": 8859,
+    "ttfbP50": 942,
+    "ttfbP95": 9570,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "surge",
@@ -1500,7 +1500,7 @@
     "ttfbP50": 1628,
     "ttfbP95": 1815,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "deno-deploy",
@@ -1508,7 +1508,7 @@
     "ttfbP50": 1721,
     "ttfbP95": 2005,
     "availability": 100,
-    "n": 68
+    "n": 69
    }
   ],
   "singapore": [
@@ -1518,7 +1518,7 @@
     "ttfbP50": 25,
     "ttfbP95": 100,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "firebase-hosting",
@@ -1526,7 +1526,7 @@
     "ttfbP50": 29,
     "ttfbP95": 192,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "wasmer-edge",
@@ -1534,31 +1534,31 @@
     "ttfbP50": 38,
     "ttfbP95": 205,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "vercel",
     "name": "Vercel",
-    "ttfbP50": 40,
+    "ttfbP50": 42,
     "ttfbP95": 147,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "railway",
     "name": "Railway",
-    "ttfbP50": 44,
-    "ttfbP95": 414,
+    "ttfbP50": 48,
+    "ttfbP95": 428,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "digitalocean-app-platform",
     "name": "DigitalOcean App Platform",
-    "ttfbP50": 98,
-    "ttfbP95": 361,
+    "ttfbP50": 101,
+    "ttfbP95": 368,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "aws-amplify-hosting",
@@ -1566,7 +1566,7 @@
     "ttfbP50": 142,
     "ttfbP95": 633,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
@@ -1574,23 +1574,23 @@
     "ttfbP50": 176,
     "ttfbP95": 1263,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "cloudflare-pages",
     "name": "Cloudflare Pages",
-    "ttfbP50": 206,
+    "ttfbP50": 212,
     "ttfbP95": 505,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "google-cloud-run",
     "name": "Google Cloud Run",
-    "ttfbP50": 244,
+    "ttfbP50": 245,
     "ttfbP95": 298,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "github-pages",
@@ -1598,15 +1598,15 @@
     "ttfbP50": 272,
     "ttfbP95": 454,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "azure-static-web-apps",
     "name": "Azure Static Web Apps",
-    "ttfbP50": 297,
+    "ttfbP50": 312,
     "ttfbP95": 918,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "render",
@@ -1614,7 +1614,7 @@
     "ttfbP50": 321,
     "ttfbP95": 658,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fastly-compute",
@@ -1622,7 +1622,7 @@
     "ttfbP50": 331,
     "ttfbP95": 735,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "netlify",
@@ -1630,7 +1630,7 @@
     "ttfbP50": 472,
     "ttfbP95": 856,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "northflank",
@@ -1638,7 +1638,7 @@
     "ttfbP50": 532,
     "ttfbP95": 809,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "codeberg-pages",
@@ -1646,15 +1646,7 @@
     "ttfbP50": 546,
     "ttfbP95": 1105,
     "availability": 100,
-    "n": 64
-   },
-   {
-    "slug": "upsun",
-    "name": "Upsun (Platform.sh)",
-    "ttfbP50": 662,
-    "ttfbP95": 1135,
-    "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "heroku",
@@ -1662,7 +1654,7 @@
     "ttfbP50": 700,
     "ttfbP95": 762,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "appwrite-sites",
@@ -1670,31 +1662,39 @@
     "ttfbP50": 700,
     "ttfbP95": 1089,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
-    "slug": "koyeb",
-    "name": "Koyeb",
-    "ttfbP50": 806,
-    "ttfbP95": 7593,
+    "slug": "upsun",
+    "name": "Upsun (Platform.sh)",
+    "ttfbP50": 735,
+    "ttfbP95": 1149,
     "availability": 100,
-    "n": 68
+    "n": 65
    },
    {
     "slug": "gitlab-pages",
     "name": "GitLab Pages",
-    "ttfbP50": 807,
+    "ttfbP50": 810,
     "ttfbP95": 977,
     "availability": 100,
-    "n": 68
+    "n": 69
+   },
+   {
+    "slug": "koyeb",
+    "name": "Koyeb",
+    "ttfbP50": 816,
+    "ttfbP95": 8824,
+    "availability": 100,
+    "n": 69
    },
    {
     "slug": "surge",
     "name": "Surge",
-    "ttfbP50": 920,
+    "ttfbP50": 938,
     "ttfbP95": 1467,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "deno-deploy",
@@ -1702,7 +1702,7 @@
     "ttfbP50": 1345,
     "ttfbP95": 1689,
     "availability": 100,
-    "n": 68
+    "n": 69
    }
   ],
   "australia": [
@@ -1712,7 +1712,7 @@
     "ttfbP50": 14,
     "ttfbP95": 178,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "netlify",
@@ -1720,15 +1720,7 @@
     "ttfbP50": 22,
     "ttfbP95": 689,
     "availability": 100,
-    "n": 68
-   },
-   {
-    "slug": "aws-amplify-hosting",
-    "name": "AWS Amplify Hosting",
-    "ttfbP50": 31,
-    "ttfbP95": 227,
-    "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fly-io",
@@ -1736,15 +1728,23 @@
     "ttfbP50": 32,
     "ttfbP95": 152,
     "availability": 100,
-    "n": 68
+    "n": 69
+   },
+   {
+    "slug": "aws-amplify-hosting",
+    "name": "AWS Amplify Hosting",
+    "ttfbP50": 32,
+    "ttfbP95": 227,
+    "availability": 100,
+    "n": 69
    },
    {
     "slug": "vercel",
     "name": "Vercel",
-    "ttfbP50": 45,
+    "ttfbP50": 46,
     "ttfbP95": 309,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "cloudflare-workers",
@@ -1752,7 +1752,7 @@
     "ttfbP50": 87,
     "ttfbP95": 227,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "cloudflare-pages",
@@ -1760,7 +1760,7 @@
     "ttfbP50": 131,
     "ttfbP95": 421,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "render",
@@ -1768,7 +1768,7 @@
     "ttfbP50": 235,
     "ttfbP95": 336,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "github-pages",
@@ -1776,15 +1776,15 @@
     "ttfbP50": 241,
     "ttfbP95": 1246,
     "availability": 100,
-    "n": 65
+    "n": 66
    },
    {
     "slug": "digitalocean-app-platform",
     "name": "DigitalOcean App Platform",
-    "ttfbP50": 273,
-    "ttfbP95": 746,
+    "ttfbP50": 277,
+    "ttfbP95": 800,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "fastly-compute",
@@ -1792,7 +1792,7 @@
     "ttfbP50": 334,
     "ttfbP95": 622,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "google-cloud-run",
@@ -1800,7 +1800,7 @@
     "ttfbP50": 437,
     "ttfbP95": 620,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "wasmer-edge",
@@ -1808,7 +1808,7 @@
     "ttfbP50": 546,
     "ttfbP95": 798,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "railway",
@@ -1816,7 +1816,7 @@
     "ttfbP50": 551,
     "ttfbP95": 678,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "deno-deploy",
@@ -1824,7 +1824,7 @@
     "ttfbP50": 600,
     "ttfbP95": 1393,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "azure-static-web-apps",
@@ -1832,7 +1832,7 @@
     "ttfbP50": 636,
     "ttfbP95": 883,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "gitlab-pages",
@@ -1840,23 +1840,23 @@
     "ttfbP50": 703,
     "ttfbP95": 856,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "heroku",
     "name": "Heroku",
-    "ttfbP50": 783,
+    "ttfbP50": 785,
     "ttfbP95": 961,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "northflank",
     "name": "Northflank",
-    "ttfbP50": 847,
+    "ttfbP50": 848,
     "ttfbP95": 967,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "codeberg-pages",
@@ -1864,7 +1864,7 @@
     "ttfbP50": 996,
     "ttfbP95": 1272,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "upsun",
@@ -1872,7 +1872,7 @@
     "ttfbP50": 1042,
     "ttfbP95": 1163,
     "availability": 100,
-    "n": 64
+    "n": 65
    },
    {
     "slug": "surge",
@@ -1880,23 +1880,23 @@
     "ttfbP50": 1189,
     "ttfbP95": 1425,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "koyeb",
     "name": "Koyeb",
-    "ttfbP50": 1386,
-    "ttfbP95": 9335,
+    "ttfbP50": 1397,
+    "ttfbP95": 9714,
     "availability": 100,
-    "n": 68
+    "n": 69
    },
    {
     "slug": "appwrite-sites",
     "name": "Appwrite Sites",
-    "ttfbP50": 2009,
-    "ttfbP95": 3817,
+    "ttfbP50": 2011,
+    "ttfbP95": 3942,
     "availability": 100,
-    "n": 64
+    "n": 65
    }
   ]
  },

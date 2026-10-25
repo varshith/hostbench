@@ -1,4 +1,4 @@
-# Progress — 2026-10-22
+# Progress — 2026-10-25
 
 ## Done this session
 - Cleared the dead 2014 custom domain `vinuvarshith.com` from `varshith/varshith.github.io`; the site and probe now serve 200 at https://varshith.github.io/hostbench/ and github-pages samples are `up`.
@@ -11,15 +11,14 @@
 - All commits pushed; 32 measurement runs through 2026-10-22T19:16Z, 24 hosts each.
 
 ## In flight / not working yet
-- VERDICT on GitHub cron (2026-10-22 21:00 UTC): unreliable, 5 schedule runs in 45 h (00:00, 04:42, 10:10, 15:16,
-  19:14 UTC on 10-22), i.e. ~1 in 9 hourly slots. Nothing is misconfigured (checked by Mike); the repo was created
-  inside a GitHub Actions incident and the schedule never recovered. A session-bound fallback loop (dispatch when the
-  last run is 55+ min old, every 10 min) kept the series hourly 2026-10-21 20:50 -> 2026-10-22 18:05 UTC; hours 18
-  and 20 on 10-22 are missing because it had stopped. Re-armed 2026-10-22 21:15 UTC and again 2026-10-23 12:05 UTC, now until 12:00 UTC 2026-10-24 (3 schedule runs in the
-  15 h between: 22:21, 01:29, 07:30). The
-  permanent fix is the external trigger (Next steps 2). Hour dedupe in scripts/measure.ts is confirmed twice in
-  production: the forced duplicate at 12:13 and, unprompted, the 15:16 cron run arriving 2 min after a dispatch
-  (skipped, no commit, no deploy). Cron + external trigger can safely coexist.
+- VERDICT on GitHub cron (2026-10-25 07:30 UTC): unreliable but improving. 5 schedule runs in the first 45 h
+  (~1 in 9 slots); 11 schedule runs in the 37 h from 2026-10-23 18:00 to 10-25 07:00 (~1 in 3.4 slots). Nothing is
+  misconfigured (checked by Mike); the repo was created inside a GitHub Actions incident. A session-bound fallback loop
+  (dispatch when the last run is 55+ min old) kept the series hourly 10-21 20:50 -> 10-23 16:26 UTC, then the machine
+  slept and only the cron ran; expect gaps in data/runs.jsonl from 10-23 17:00 onward. Re-armed 10-25 07:30 UTC until
+  12:00 UTC 10-26 while this session is open. The permanent fix is the external trigger (Next steps 2). Hour dedupe in
+  scripts/measure.ts is confirmed in production (forced duplicate 10-22 12:13; unprompted cron 2 min after a dispatch
+  10-22 15:16: skipped, no commit, no deploy), so cron + external trigger coexist safely.
 - Reference-page fragility: heroku (2025 sample app), azure-static-web-apps (2023 content) and northflank (dashboard shell) are the least stable picks; swap rather than record downtime if one goes 404.
 - Budget headroom is 58 tests/h; runner IPs may be shared. Watch `stoppedEarly` in data/runs.jsonl.
 

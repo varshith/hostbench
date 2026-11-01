@@ -1,9 +1,9 @@
 {
  "month": "2026-10",
- "generatedAt": "2026-10-31T23:24:20.168Z",
+ "generatedAt": "2026-11-01T06:01:43.959Z",
  "periodStart": "2026-10-21T16:37:56.820Z",
  "periodEnd": "2026-10-31T23:24:18.343Z",
- "partial": true,
+ "partial": false,
  "sampleCount": 18472,
  "hostCount": 24,
  "ranking": [
